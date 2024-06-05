@@ -12,9 +12,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import id.ac.astra.polytechnic.internak.databinding.ActivityMainBinding;
 import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
+import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener {
     ActivityMainBinding binding;
 
     @Override
@@ -58,5 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void moveToNotificationFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new NotificationFragment())
+                .commit();
+    }
+
+    @Override
+    public void onNotificationClicked() {
+        // Panggil moveToNotificationFragment saat gambar diklik
+        moveToNotificationFragment();
     }
 }
