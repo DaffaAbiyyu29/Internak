@@ -2,6 +2,7 @@ package id.ac.astra.polytechnic.internak;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener {
     ActivityMainBinding binding;
 
     @Override
@@ -37,18 +38,12 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 Fragment selectedFragment = null;
 
                 if (item.getItemId() == R.id.nav_home) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main, new HomeFragment())
-                            .commit();
-            } else if (item.getItemId() == R.id.nav_cage) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main, new CageFragment())
-                            .commit();
-            } else if (item.getItemId() == R.id.nav_profile) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main, new ProfileFragment())
-                            .commit();
-            }
+                    selectedFragment = new HomeFragment();
+                } else if (item.getItemId() == R.id.nav_cage) {
+                    selectedFragment = new CageFragment();
+                } else if (item.getItemId() == R.id.nav_profile) {
+                    selectedFragment = new ProfileFragment();
+                }
 
                 if (selectedFragment != null) {
                     getSupportFragmentManager().beginTransaction()
@@ -65,6 +60,14 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, new NotificationFragment())
                 .commit();
+        hideBottomNavigationView();
+    }
+
+    private void backToDashboard() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new HomeFragment())
+                .commit();
+        showBottomNavigationView();
     }
 
     @Override
@@ -72,4 +75,21 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         // Panggil moveToNotificationFragment saat gambar diklik
         moveToNotificationFragment();
     }
+
+    @Override
+    public void OnNotificationBackClickListener() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new HomeFragment())
+                .commit();
+        showBottomNavigationView();
+    }
+
+    private void hideBottomNavigationView() {
+        binding.bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    private void showBottomNavigationView() {
+        binding.bottomNavigationView.setVisibility(View.VISIBLE);
+    }
 }
+

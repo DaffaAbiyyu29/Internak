@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/text_title"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
@@ -57,6 +56,7 @@
             android:textSize="35sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent" />
+
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -64,197 +64,24 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:cardBackgroundColor="#F0F3FF"
-        app:cardCornerRadius="50dp"
+        app:cardCornerRadius="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_card_view"
         app:strokeColor="#F0F3FF">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardview_cage"
-            android:layout_width="345dp"
-            android:layout_height="165dp"
-            android:background="@drawable/cage_card"
-            app:cardBackgroundColor="@color/primary"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            app:cardCornerRadius="15dp"
-            android:layout_gravity="top|center"
-            app:layout_constraintEnd_toEndOf="parent"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_cages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/top_card_view"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/primary">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-            <RelativeLayout
-                android:layout_width="350dp"
-                android:layout_height="175dp"
-                android:background="@drawable/cage_card"
-                />
-
-            <TextView
-                android:id="@+id/text_card_cage_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="#F5F5F5"
-                android:textSize="16sp"
-                android:text="HARVEST MOON"
-                android:textStyle="bold"
-                android:textAlignment="viewStart" />
-
-            <TextView
-                android:id="@+id/text_card_cage_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:textColor="#C2D1C6"
-                android:textSize="12sp"
-                android:text="1 April 2024"
-                android:textAlignment="viewEnd" />
-
-            <TextView
-                android:id="@+id/text_card_cage_locate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="#C2D1C6"
-                android:textSize="12sp"
-                android:text="Bandung"
-                android:textAlignment="viewStart" />
-
-            <TextView
-                android:id="@+id/text_card_cage_qty"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/gold2"
-                android:textSize="12sp"
-                android:text="200 Ekor"
-                android:textStyle="bold"
-                android:textAlignment="viewStart" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/button_subcard_cage_temperature"
-                android:layout_width="110dp"
-                android:layout_height="60dp"
-                android:layout_gravity="bottom|end"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="140dp"
-                android:layout_marginBottom="15dp"
-                app:cardBackgroundColor="@color/gold1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/gold1">
-
-                <TextView
-                    android:id="@+id/text_subcard_cage_title_temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_gravity="top|center"
-                    android:textColor="@color/gold3"
-                    android:textSize="14sp"
-                    android:text="Suhu"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/text_subcard_cage_value_temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_gravity="bottom|center"
-                    android:textColor="@color/brown1"
-                    android:textSize="14sp"
-                    android:text="25°C" />
-
-                <ImageButton
-                    android:id="@+id/button_subcard_cage_temperature2"
-                    android:layout_width="25dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="bottom|end"
-                    android:background="@color/gold2"
-                    android:clickable="true"
-                    android:contentDescription="TODO"
-                    android:src="@drawable/ic_right_arrow"
-                    app:cardCornerRadius="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/gold2"
-                    app:tint="@color/white"
-                    />
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/button_subcard_cage_amonia"
-                android:layout_width="110dp"
-                android:layout_height="60dp"
-                android:layout_gravity="bottom|end"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="15dp"
-                app:cardBackgroundColor="@color/gold1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="@color/gold1">
-
-                <TextView
-                    android:id="@+id/text_subcard_cage_title_amonia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_gravity="top|center"
-                    android:textColor="@color/gold3"
-                    android:textSize="14sp"
-                    android:text="Amonia"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/text_subcard_cage_value_amonia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="7dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_gravity="bottom|center"
-                    android:textColor="@color/brown1"
-                    android:textSize="14sp"
-                    android:text="20 ppm" />
-
-                <ImageButton
-                    android:id="@+id/button_subcard_cage_amonia2"
-                    android:layout_width="25dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="bottom|end"
-                    android:background="@color/gold2"
-                    android:clickable="true"
-                    android:contentDescription="TODO"
-                    android:src="@drawable/ic_right_arrow"
-                    app:cardCornerRadius="0dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:strokeColor="@color/gold2"
-                    app:tint="@color/white"
-                    />
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/text_artikel"
@@ -280,51 +107,15 @@
             android:text="@string/view_artikel"
             android:textStyle="bold"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cardview_artikel"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_articles"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="20dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="280dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
             android:layout_gravity="top|center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:outlineSpotShadowColor="@color/black"
-            android:outlineAmbientShadowColor="@color/primary"
-            app:strokeColor="@color/white">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/default_article" />
-
-            <TextView
-                android:id="@+id/text_article_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="120dp"
-                android:textColor="#121212"
-                android:textSize="15sp"
-                android:text="Perbedaan Daging Sapi..."
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/text_article_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="33dp"
-                android:layout_marginLeft="120dp"
-                android:textColor="#5A5A5A"
-                android:textSize="12sp"
-                android:text="4 April 2024" />
-
-        </com.google.android.material.card.MaterialCardView>
+            android:clipToPadding="false"
+            android:padding="16dp"
+            tools:listitem="@layout/cardview_article" />
 
     </com.google.android.material.card.MaterialCardView>
 
