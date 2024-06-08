@@ -12,11 +12,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import id.ac.astra.polytechnic.internak.databinding.ActivityMainBinding;
 import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
+import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener,CageFragment.OnCreateCageClickListener,NotificationFragment.OnNotificationBackClickListener,CreateCage.OnCreateCageBackClickListener  {
     ActivityMainBinding binding;
 
     @Override
@@ -82,6 +83,28 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 .replace(R.id.main, new HomeFragment())
                 .commit();
         showBottomNavigationView();
+    }
+
+    @Override
+    public void OnCreateCageBackClickListener() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CageFragment())
+                .commit();
+        showBottomNavigationView();
+    }
+
+    private void moveToCreateCageFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CreateCage())
+                .commit();
+        hideBottomNavigationView();
+    }
+
+
+    @Override
+    public void onCreateCageClicked() {
+        // Panggil moveToNotificationFragment saat gambar diklik
+        moveToCreateCageFragment();
     }
 
     private void hideBottomNavigationView() {
