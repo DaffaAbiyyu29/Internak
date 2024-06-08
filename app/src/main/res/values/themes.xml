@@ -10,4 +10,10 @@
     </style>
 
     <style name="Theme.InTernak" parent="Base.Theme.InTernak" />
+
+    <!-- Button Style -->
+    <style name="ButtonStyle">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/button_inactive_background</item>
+    </style>
 </resources>
