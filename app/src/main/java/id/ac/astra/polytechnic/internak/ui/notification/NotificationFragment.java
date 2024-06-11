@@ -1,11 +1,15 @@
 package id.ac.astra.polytechnic.internak.ui.notification;
 
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -32,6 +36,9 @@ public class NotificationFragment extends Fragment {
     private List<Notification> notificationList;
     private MaterialCardView popupFilterNotification;
     private MaterialButton buttonFilterNotification;
+    private GestureDetector gestureDetector;
+    private float initialY;
+
 
     public interface OnNotificationBackClickListener {
         void OnNotificationBackClickListener();
@@ -71,6 +78,7 @@ public class NotificationFragment extends Fragment {
         return view;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -94,6 +102,33 @@ public class NotificationFragment extends Fragment {
         popupFilterNotification.setVisibility(View.GONE);
 
         buttonFilterNotification.setOnClickListener(v -> showPopupWithAnimation());
+
+        // Set up the GestureDetector
+        gestureDetector = new GestureDetector(getContext(), new SwipeGestureDetector());
+
+        // Attach the OnTouchListener to the popup
+        popupFilterNotification.setOnTouchListener((v, event) -> {
+            gestureDetector.onTouchEvent(event);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    initialY = event.getRawY();
+                    return true;
+                case MotionEvent.ACTION_MOVE:
+                    float deltaY = event.getRawY() - initialY;
+                    if (deltaY > 0) {
+                        popupFilterNotification.setTranslationY(deltaY);
+                    }
+                    return true;
+                case MotionEvent.ACTION_UP:
+                    if (event.getRawY() - initialY > 300) { // Threshold for swipe down to close
+                        closePopupWithAnimation();
+                    } else {
+                        resetPopupPosition();
+                    }
+                    return true;
+            }
+            return false;
+        });
     }
 
     @Override
@@ -105,18 +140,52 @@ public class NotificationFragment extends Fragment {
         }
     }
 
+    public void setOnNotificationBackClickListener(OnNotificationBackClickListener listener) {
+        this.listener = listener;
+    }
+
     private void showPopupWithAnimation() {
         if (popupFilterNotification.getVisibility() == View.GONE) {
             popupFilterNotification.setVisibility(View.VISIBLE);
             ViewPropertyAnimator animator = popupFilterNotification.animate();
             animator.translationY(0).setDuration(300).start();
         } else {
-            ViewPropertyAnimator animator = popupFilterNotification.animate();
-            animator.translationY(1000).setDuration(300).withEndAction(() -> popupFilterNotification.setVisibility(View.GONE)).start();
+            closePopupWithAnimation();
         }
     }
 
-    public void setOnNotificationBackClickListener(OnNotificationBackClickListener listener) {
-        this.listener = listener;
+    private void closePopupWithAnimation() {
+        ViewPropertyAnimator animator = popupFilterNotification.animate();
+        animator.translationY(1000).setDuration(300).withEndAction(() -> popupFilterNotification.setVisibility(View.GONE)).start();
+    }
+
+    private void resetPopupPosition() {
+        ViewPropertyAnimator animator = popupFilterNotification.animate();
+        animator.translationY(0).setInterpolator(new DecelerateInterpolator()).setDuration(300).start();
+    }
+
+    private class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+        private static final int SWIPE_THRESHOLD = 100;
+        private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+
+        @Override
+        public boolean onDown(MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            float diffY = e2.getY() - e1.getY();
+            float diffX = e2.getX() - e1.getX();
+            if (Math.abs(diffY) > Math.abs(diffX)) {
+                if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
+                    if (diffY > 0) {
+                        closePopupWithAnimation();
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

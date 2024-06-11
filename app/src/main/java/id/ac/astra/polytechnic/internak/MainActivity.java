@@ -1,6 +1,7 @@
 package id.ac.astra.polytechnic.internak;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -10,12 +11,21 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
+import id.ac.astra.polytechnic.internak.api.ApiClient;
+import id.ac.astra.polytechnic.internak.api.ApiResponse;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.ActivityMainBinding;
+import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
 import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener,CageFragment.OnCreateCageClickListener,NotificationFragment.OnNotificationBackClickListener,CreateCage.OnCreateCageBackClickListener  {
     ActivityMainBinding binding;
@@ -55,6 +65,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 return true;
             }
         });
+
+        fetchCages();
     }
 
     private void moveToNotificationFragment() {
@@ -113,6 +125,29 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
 
     private void showBottomNavigationView() {
         binding.bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    private void fetchCages() {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        Call<ApiResponse<Cage>> call = apiService.getAllCages();
+        call.enqueue(new Callback<ApiResponse<Cage>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Cage>> call, Response<ApiResponse<Cage>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Cage> cages = response.body().getData();
+                    for (Cage cage : cages) {
+                        Log.d("Cage", "Name: " + cage.getCagName() + ", Type: " + cage.getCtyId());
+                    }
+                } else {
+                    Log.e("Cage", "Response failed: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Cage>> call, Throwable t) {
+                Log.e("Cage", "Error: " + t.getMessage());
+            }
+        });
     }
 }
 
