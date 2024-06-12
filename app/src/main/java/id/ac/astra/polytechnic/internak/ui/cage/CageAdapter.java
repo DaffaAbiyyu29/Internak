@@ -11,13 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiResponse;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.model.Cage;
+import id.ac.astra.polytechnic.internak.model.City;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CageAdapter extends RecyclerView.Adapter<CageAdapter.CageViewHolder> {
     private List<Cage> cageItemList;
+    private ApiService apiService; // Tambahkan atribut ApiService
 
-    public CageAdapter(List<Cage> cageItemList) {
+    public CageAdapter(List<Cage> cageItemList, ApiService apiService) {
         this.cageItemList = cageItemList;
+        this.apiService = apiService; // Inisialisasi ApiService
     }
 
     @NonNull
@@ -28,16 +36,28 @@ public class CageAdapter extends RecyclerView.Adapter<CageAdapter.CageViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CageViewHolder holder, int position) {
-        Cage cageItem = cageItemList.get(position);
-        // Atur data ke dalam tampilan holder
-        holder.cageName.setText(cageItem.getCagName());
-//        holder.cageType.setText(cageItem.getCagType());
-        holder.cageLocation.setText(String.valueOf(cageItem.getCtyId()));
-        holder.cageQty.setText(String.valueOf(cageItem.getCagCapacity()) + " Ekor");
-        // Atur data lain sesuai kebutuhan
-    }
+    public void onBindViewHolder(@NonNull final CageViewHolder holder, int position) {
+        final Cage cageItem = cageItemList.get(position);
 
+        // Panggil metode getCityById untuk mendapatkan data kota berdasarkan ID
+        apiService.getCityById(cageItem.getCtyId()).enqueue(new Callback<ApiResponse<City>>() {
+            @Override
+            public void onResponse(@NonNull Call<ApiResponse<City>> call, @NonNull Response<ApiResponse<City>> response) {
+                if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
+                    City city = (City) response.body().getData();
+                    holder.cageLocation.setText(city.getCty_name()); // Atur teks berdasarkan nama kota
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ApiResponse<City>> call, @NonNull Throwable t) {
+                // Tangani kegagalan jika terjadi
+            }
+        });
+
+        holder.cageName.setText(cageItem.getCagName());
+        holder.cageQty.setText(String.valueOf(cageItem.getCagCapacity()) + " Ekor");
+    }
 
     @Override
     public int getItemCount() {
@@ -51,17 +71,14 @@ public class CageAdapter extends RecyclerView.Adapter<CageAdapter.CageViewHolder
 
     public static class CageViewHolder extends RecyclerView.ViewHolder {
         TextView cageName;
-        TextView cageType;
         TextView cageLocation;
         TextView cageQty;
 
         public CageViewHolder(@NonNull View itemView) {
             super(itemView);
             cageName = itemView.findViewById(R.id.text_card_cage_title);
-            cageType = itemView.findViewById(R.id.text_card_cage_date);
             cageLocation = itemView.findViewById(R.id.text_card_cage_location);
             cageQty = itemView.findViewById(R.id.text_card_cage_qty);
-            // Inisialisasi tampilan lain sesuai dengan yang ada di cardview_cage.xml
         }
     }
 }
