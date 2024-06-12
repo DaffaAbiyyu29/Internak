@@ -1,8 +1,11 @@
 package id.ac.astra.polytechnic.internak.ui.notification;
 
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +18,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +31,9 @@ import java.util.List;
 
 import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
-import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
+import id.ac.astra.polytechnic.internak.databinding.FragmentNotificationBinding;
+
+import id.ac.astra.polytechnic.internak.model.Notification;
 
 public class NotificationFragment extends Fragment {
     private OnNotificationBackClickListener listener;
@@ -37,6 +44,7 @@ public class NotificationFragment extends Fragment {
     private MaterialCardView popupFilterNotification;
     private MaterialButton buttonFilterNotification;
     private GestureDetector gestureDetector;
+    private FragmentNotificationBinding binding;
     private float initialY;
 
 
@@ -44,39 +52,44 @@ public class NotificationFragment extends Fragment {
         void OnNotificationBackClickListener();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_notification, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        NotificationViewModel notificationViewModel = new ViewModelProvider(this).get(NotificationViewModel.class);
 
-        recyclerView = view.findViewById(R.id.recycler_view_notifications);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding = FragmentNotificationBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
 
-        // Initialize your notification list here
-        notificationList = new ArrayList<>();
-//        notificationList.add(new Notification("Waspada, Temperature Tinggi!", "Terjadi kenaikan suhu pada kandang...", false));
-//        notificationList.add(new Notification("Peringatan Hujan Deras", "Hujan deras diperkirakan akan terjadi...", true));
+        Log.d(TAG, "onCreateView: setupRecyclerView akan dipanggil");
+        setupRecyclerView();
 
-        notificationAdapter = new NotificationAdapter(notificationList);
-        recyclerView.setAdapter(notificationAdapter);
+        // Observe the notification data from NotificationViewModel
+        notificationViewModel.getNotifications().observe(getViewLifecycleOwner(), new Observer<List<Notification>>() {
+            @Override
+            public void onChanged(List<Notification> notifications) {
+                if (notifications != null && !notifications.isEmpty()) {
+                    // Hide no_notification_card and show RecyclerView
+                    binding.recyclerViewNotifications.setVisibility(View.VISIBLE);
+                    binding.noNotificationCard.setVisibility(View.GONE);
 
+                    // Update RecyclerView adapter with new notification data
+                    notificationAdapter.updateData(notifications);
+                } else {
+                    // Hide RecyclerView and show no_notification_card
+                    binding.recyclerViewNotifications.setVisibility(View.GONE);
+                    binding.noNotificationCard.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
-        recyclerView2 = view.findViewById(R.id.recycler_view_notifications);
-        MaterialCardView noNotificationCard = view.findViewById(R.id.no_notification_card);
-
-        if (notificationList != null && !notificationList.isEmpty()) {
-            recyclerView.setVisibility(View.VISIBLE);
-            noNotificationCard.setVisibility(View.GONE);
-            // Set adapter untuk RecyclerView dan tampilkan notifikasi
-            NotificationAdapter adapter = new NotificationAdapter(notificationList);
-            recyclerView.setAdapter(adapter);
-        } else {
-            recyclerView.setVisibility(View.GONE);
-            noNotificationCard.setVisibility(View.VISIBLE);
-        }
-
-        return view;
+        return root;
     }
+
+    private void setupRecyclerView() {
+        binding.recyclerViewNotifications.setLayoutManager(new LinearLayoutManager(getContext()));
+        notificationAdapter = new NotificationAdapter(new ArrayList<>());
+        binding.recyclerViewNotifications.setAdapter(notificationAdapter);
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -188,4 +201,24 @@ public class NotificationFragment extends Fragment {
             return false;
         }
     }
+
+    private void setupObservers(NotificationViewModel notificationViewModel) {
+        notificationViewModel.getNotifications().observe(getViewLifecycleOwner(), new Observer<List<Notification>>() {
+            @Override
+            public void onChanged(List<Notification> notifications) {
+                if (notifications != null) {
+                    Log.d(TAG, "Notifications updated: " + notifications.size());
+                    notificationAdapter.updateData(notifications);
+                }
+            }
+        });
+    }
+
+//    private void setupRecyclerView() {
+//        notificationAdapter = new NotificationAdapter(new ArrayList<>());
+//        RecyclerView recyclerViewNotifications = binding.recyclerViewNotifications;
+//        recyclerViewNotifications.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+//        recyclerViewNotifications.setAdapter(notificationAdapter);
+//
+//    }
 }

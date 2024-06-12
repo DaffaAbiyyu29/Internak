@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiClient;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentHomeBinding;
 import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.ui.article.Article;
@@ -79,10 +81,12 @@ public class HomeFragment extends Fragment {
 
         Log.d(TAG, "setupRecyclerView: RecyclerView setup selesai");
 
-        cageAdapter = new CageAdapter(new ArrayList<>());
+        ApiService apiService = ApiClient.getClient().create(ApiService.class); // Pastikan RetrofitClient dan konfigurasi Anda telah disiapkan
+        cageAdapter = new CageAdapter(new ArrayList<>(), apiService);
         RecyclerView recyclerViewCages = binding.recyclerViewCages;
         recyclerViewCages.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewCages.setAdapter(cageAdapter);
+
     }
 
     private void setupObservers(HomeViewModel homeViewModel) {

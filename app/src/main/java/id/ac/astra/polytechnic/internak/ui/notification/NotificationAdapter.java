@@ -3,7 +3,6 @@ package id.ac.astra.polytechnic.internak.ui.notification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.model.Notification;
 
 public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
-
     private List<Notification> notificationList;
 
     public NotificationAdapter(List<Notification> notificationList) {
@@ -31,13 +30,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
         Notification notification = notificationList.get(position);
-        holder.textNotificationTitle.setText(notification.getTitle());
-        holder.textNotificationDesc.setText(notification.getDescription());
-        if (notification.isRead()) {
-            holder.iconNotification.setImageResource(R.drawable.ic_mail_read);
-        } else {
-            holder.iconNotification.setImageResource(R.drawable.ic_mail_unread);
-        }
+        holder.notificationTitle.setText(notification.getTitle());
+        holder.notificationDescription.setText(notification.getDescription());
+        // Set other data as needed
     }
 
     @Override
@@ -45,16 +40,20 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return notificationList.size();
     }
 
+    public void updateData(List<Notification> newNotifications) {
+        this.notificationList = newNotifications;
+        notifyDataSetChanged();
+    }
+
     public static class NotificationViewHolder extends RecyclerView.ViewHolder {
-        ImageView iconNotification;
-        TextView textNotificationTitle;
-        TextView textNotificationDesc;
+        TextView notificationTitle;
+        TextView notificationDescription;
 
         public NotificationViewHolder(@NonNull View itemView) {
             super(itemView);
-            iconNotification = itemView.findViewById(R.id.icon_notification);
-            textNotificationTitle = itemView.findViewById(R.id.text_notification_title);
-            textNotificationDesc = itemView.findViewById(R.id.text_notification_desc);
+            notificationTitle = itemView.findViewById(R.id.text_notification_title);
+            notificationDescription = itemView.findViewById(R.id.text_notification_desc);
+            // Initialize other views if needed
         }
     }
 }
