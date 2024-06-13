@@ -26,15 +26,16 @@
 
             <ImageView
                 android:id="@+id/button_back_notification"
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="start|top"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="20dp"
-                android:layout_marginStart="20dp"
                 android:clickable="true"
                 android:src="@drawable/ic_left_arrow"
                 android:tooltipText="Back To Dashboard"
-                app:tint="@color/white"/>
+                app:tint="@color/white" />
 
             <TextView
                 android:id="@+id/textView"
@@ -81,7 +82,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_bell_slash"
                 app:tint="@color/primary" />

@@ -15,6 +15,7 @@ import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
+import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener {
     ActivityMainBinding binding;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                     selectedFragment = new CageFragment();
                 } else if (item.getItemId() == R.id.nav_profile) {
                     selectedFragment = new ProfileFragment();
+                } else if (item.getItemId() == R.id.nav_schedule) {
+                    selectedFragment = new ScheduleFragment();
                 }
 
                 if (selectedFragment != null) {

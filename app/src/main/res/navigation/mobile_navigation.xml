@@ -18,6 +18,12 @@
         tools:layout="@layout/fragment_cage" />
 
     <fragment
+        android:id="@+id/navigation_schedule"
+        android:name="id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment"
+        android:label="@string/schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
         android:id="@+id/navigation_profile"
         android:name="id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment"
         android:label="@string/profile_title"

@@ -1,4 +1,4 @@
-package id.ac.astra.polytechnic.internak.ui.profile;
+package id.ac.astra.polytechnic.internak.ui.schedule;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,21 +11,22 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import id.ac.astra.polytechnic.internak.databinding.FragmentProfileBinding;
-import id.ac.astra.polytechnic.internak.ui.profile.ProfileViewModel;
+import id.ac.astra.polytechnic.internak.databinding.FragmentScheduleBinding;
+import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleViewModel;
+public class ScheduleFragment extends Fragment {
 
-public class ProfileFragment extends Fragment {
-    private FragmentProfileBinding binding;
+    private FragmentScheduleBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        ProfileViewModel profileViewModel =
-                new ViewModelProvider(this).get(ProfileViewModel.class);
+        ScheduleViewModel scheduleViewModel =
+                new ViewModelProvider(this).get(ScheduleViewModel.class);
 
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
+        binding = FragmentScheduleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        //final TextView textView = binding.textProfile;
-        //profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        final TextView textView = binding.textSchedule;
+        scheduleViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
