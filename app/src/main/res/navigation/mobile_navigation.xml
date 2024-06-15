@@ -29,4 +29,20 @@
         android:label="@string/profile_title"
         tools:layout="@layout/fragment_profile" />
 
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_ubahProfilFragment"
+            app:destination="@id/ubahProfilFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ubahProfilFragment"
+        android:name="id.ac.astra.polytechnic.internak.ui.profile.UbahProfilFragment"
+        android:label="Ubah Profil"
+        tools:layout="@layout/fragment_ubah_profil" />
+
 </navigation>

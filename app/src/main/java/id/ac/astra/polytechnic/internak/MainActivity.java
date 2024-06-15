@@ -66,6 +66,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         hideBottomNavigationView();
     }
 
+    private void moveToUbahProfilFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new NotificationFragment())
+                .commit();
+        hideBottomNavigationView();
+    }
+
     private void backToDashboard() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, new HomeFragment())
@@ -78,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         // Panggil moveToNotificationFragment saat gambar diklik
         moveToNotificationFragment();
     }
+
+
 
     @Override
     public void OnNotificationBackClickListener() {
