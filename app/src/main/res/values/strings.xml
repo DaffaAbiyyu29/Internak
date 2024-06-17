@@ -8,4 +8,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="artikel">Artikel</string>
     <string name="view_artikel">Lihat Semua</string>
+
+    <string name="welcome_image_desc">Welcome Image</string>
+    <string name="welcome_title">Selamat datang di Internak!</string>
+    <string name="welcome_title2">Budidaya Makin Gampang</string>
+    <string name="welcome_title3">Kemudahan Dalam Satu Genggaman!</string>
+    <string name="welcome_subtitle">Aplikasi dari Internak buat bantu dan kelola untuk memaksimalkan peternakanmu.</string>
+    <string name="welcome_subtitle2">Internak telah hadir dengan berbagai fitur terbaru. Dengan menerapkan teknologi pertanian budidaya jadi lebih praktis.</string>
+    <string name="policy">Dengan mendaftar, saya telah membaca dan menyetujui InTernak Ketentuan Penggunaan dan Kebijakan Privasi</string>
+    <string name="welcome_subtitle3">Dapatkan data lengkap dan keamanan yang bisa diakases dari hp kamu.</string>
+    <string name="skip">Skip</string>
+    <string name="next">Next</string>
+    <string name="started">Get Started</string>
+    <string name="rememberPw">Lupa Kata Sandi?</string>
 </resources>
