@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:padding="16dp">
+
+    <!-- Greeting Text -->
+    <TextView
+    android:id="@+id/greetingText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="60dp"
+    android:text="Hi Edwin"
+    android:textColor="@android:color/white"
+    android:textSize="36sp"
+    android:textStyle="bold" />
+
+    <!-- Registration Success Text -->
+    <TextView
+    android:id="@+id/successText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/greetingText"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="8dp"
+    android:text="Pendaftaran kamu berhasil!"
+    android:textColor="@android:color/white"
+    android:textSize="18sp" />
+
+    <!-- Image -->
+    <ImageView
+    android:id="@+id/successImage"
+    android:layout_width="250dp"
+    android:layout_height="280dp"
+    android:layout_below="@id/successText"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="40dp"
+    android:src="@drawable/login_success"
+    android:scaleType="fitCenter" />
+
+    <!-- Descriptive Text -->
+    <TextView
+    android:id="@+id/descriptionText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/successImage"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="20dp"
+    android:text="Membuka peluang untuk optimalkan pengelolaan peternakan Anda dengan mengaktifkan fitur lengkap dengan solusi IoT!"
+    android:textColor="@android:color/white"
+    android:textSize="14sp"
+    android:textAlignment="center"
+    android:gravity="center"
+    android:padding="16dp" />
+
+    <!-- Arrow Button -->
+    <ImageView
+    android:id="@+id/arrowButton"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_below="@id/descriptionText"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="10dp"
+    android:src="@drawable/arrow_circle"
+    android:padding="10dp" />
+    </RelativeLayout>

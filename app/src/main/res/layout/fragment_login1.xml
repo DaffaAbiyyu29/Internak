@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeActivity">
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"/>
+
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:textColor="@android:color/white"/>
+
+    <!-- White Rounded Background -->
+    <RelativeLayout
+        android:id="@+id/whiteBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logoText"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/rounded_background"
+        android:padding="16dp">
+
+        <!-- Button: Sebagai Tamu -->
+        <Button
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_backround"
+            android:text="Sebagai Tamu"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="80dp"
+            android:id="@+id/guestButton"
+            android:layout_centerHorizontal="true" />
+
+        <!-- Button: Daftar -->
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/guestButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_backround"
+            android:text="Daftar"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <!-- Button: Masuk -->
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_backround"
+            android:layout_below="@id/registerButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="Masuk"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <!-- Footer Text -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginButton"
+            android:layout_marginTop="170dp"
+            android:gravity="center"
+            android:text="@string/policy"
+            android:textSize="13sp"
+            android:textColor="@android:color/darker_gray" />
+    </RelativeLayout>
+</RelativeLayout>

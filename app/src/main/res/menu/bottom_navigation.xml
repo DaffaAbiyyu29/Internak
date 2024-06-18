@@ -13,9 +13,12 @@
             android:icon="@drawable/ic_cage"
             android:title="@string/cage_title" />
         <item
+            android:id="@+id/nav_schedule"
+            android:icon="@drawable/schedule"
+            android:title="@string/schedule" />
+        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_profile"
             android:title="@string/profile_title" />
-
     </group>
 </menu>
