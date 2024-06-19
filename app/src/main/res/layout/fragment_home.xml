@@ -21,12 +21,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:text="SELAMAT DATANG, EDWIN"
+            android:text="Selamat Datang, Edwin"
             android:textAlignment="viewStart"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -34,7 +34,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="right"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:clickable="true"
             android:src="@drawable/ic_bell"
@@ -64,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:cardBackgroundColor="#F0F3FF"
-        app:cardCornerRadius="45dp"
+        app:cardCornerRadius="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_card_view"
@@ -87,32 +87,32 @@
             android:id="@+id/text_artikel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:layout_marginLeft="25dp"
             android:layout_gravity="top|left"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="230dp"
+            android:text="@string/artikel"
             android:textColor="#717171"
             android:textSize="14sp"
-            android:text="@string/artikel"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/text_view_artikel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="250dp"
-            android:layout_marginRight="25dp"
             android:layout_gravity="top|right"
+            android:layout_marginTop="230dp"
+            android:layout_marginRight="25dp"
+            android:text="@string/view_artikel"
             android:textColor="#717171"
             android:textSize="14sp"
-            android:text="@string/view_artikel"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_articles"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="280dp"
+            android:layout_height="377dp"
             android:layout_gravity="top|center"
+            android:layout_marginTop="260dp"
             android:clipToPadding="false"
             android:padding="16dp"
             tools:listitem="@layout/cardview_article" />

@@ -4,14 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 
+import id.ac.astra.polytechnic.internak.R;
 import id.ac.astra.polytechnic.internak.databinding.FragmentProfileBinding;
-import id.ac.astra.polytechnic.internak.ui.profile.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
     private FragmentProfileBinding binding;
@@ -24,8 +26,8 @@ public class ProfileFragment extends Fragment {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textProfile;
-        profileViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+
         return root;
     }
 

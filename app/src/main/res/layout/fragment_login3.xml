@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background" />
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_arrow_left"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/logoText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+        android:textColor="@android:color/white" />
+
+    <!-- ScrollView for form -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoText"
+        android:layout_marginTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:background="@drawable/rounded_background">
+
+            <TextView
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center"
+                android:text="Membuat Akun"
+                android:textColor="@android:color/black"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/labelFullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleText"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/fullName"
+                android:text="Nama Lengkap"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/fullName"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelFullName"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:inputType="textPersonName"
+                android:textSize="12sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <TextView
+                android:id="@+id/labelProvince"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/fullName"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/province"
+                android:text="Provinsi"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/province"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelProvince"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <TextView
+                android:id="@+id/labelCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/province"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/city"
+                android:text="Kota"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <Spinner
+                android:id="@+id/city"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelCity"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <TextView
+                android:id="@+id/labelPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/city"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/phoneNumber"
+                android:text="No. Handphone"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelPhoneNumber"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:inputType="phone"
+                android:textSize="13sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <TextView
+                android:id="@+id/labelUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phoneNumber"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/username"
+                android:text="Nama Pengguna"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/username"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelUsername"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:inputType="textPersonName"
+                android:textSize="13sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <TextView
+                android:id="@+id/labelPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/username"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/password"
+                android:text="Kata Sandi"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelPassword"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:inputType="textPassword"
+                android:textSize="13sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <TextView
+                android:id="@+id/labelConfirmPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/password"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignStart="@id/confirmPassword"
+                android:text="Konfirmasi Kata Sandi"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/confirmPassword"
+                android:layout_width="330dp"
+                android:layout_height="50dp"
+                android:layout_below="@id/labelConfirmPassword"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_outline_green"
+                android:inputType="textPassword"
+                android:textSize="13sp"
+                android:textColor="@android:color/black"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <CheckBox
+                android:id="@+id/termsCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/confirmPassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="Dengan mendaftar, saya telah membaca dan menyetujui Ketentuan Penggunaan dan Kebijakan Privasi dari InTernak"
+                android:textSize="8dp"
+                android:textColor="@android:color/darker_gray"/>
+
+            <!-- Button: Daftar -->
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_backround"
+                android:layout_below="@id/termsCheckBox"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Daftar"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+            <!-- Footer Text -->
+            <TextView
+                android:id="@+id/footerText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/registerButton"
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:text="Sudah memiliki Akun? Masuk"
+                android:textSize="13sp"
+                android:textColor="@android:color/darker_gray" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

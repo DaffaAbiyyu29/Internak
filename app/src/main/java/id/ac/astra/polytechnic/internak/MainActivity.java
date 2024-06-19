@@ -26,6 +26,7 @@ import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener,CageFragment.OnCreateCageClickListener,NotificationFragment.OnNotificationBackClickListener,CreateCage.OnCreateCageBackClickListener  {
     ActivityMainBinding binding;
@@ -54,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                     selectedFragment = new CageFragment();
                 } else if (item.getItemId() == R.id.nav_profile) {
                     selectedFragment = new ProfileFragment();
+                } else if (item.getItemId() == R.id.nav_schedule) {
+                    selectedFragment = new ScheduleFragment();
                 }
 
                 if (selectedFragment != null) {
@@ -76,6 +79,13 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         hideBottomNavigationView();
     }
 
+    private void moveToUbahProfilFragment() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new NotificationFragment())
+                .commit();
+        hideBottomNavigationView();
+    }
+
     private void backToDashboard() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, new HomeFragment())
@@ -88,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         // Panggil moveToNotificationFragment saat gambar diklik
         moveToNotificationFragment();
     }
+
+
 
     @Override
     public void OnNotificationBackClickListener() {
