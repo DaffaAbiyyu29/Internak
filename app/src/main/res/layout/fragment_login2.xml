@@ -79,7 +79,7 @@
             android:background="@drawable/button_outline_green"
             android:ems="15"
             android:inputType="textEmailAddress"
-            android:text="Email"
+            android:hint="Email"
             android:textSize="13sp"
             android:textAlignment="center"
             android:textColor="@android:color/darker_gray" />
@@ -93,7 +93,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/button_outline_green"
             android:inputType="textPassword"
-            android:text="Kata Sandi"
+            android:hint="Kata Sandi"
             android:ems="15"
             android:textSize="13sp"
             android:textAlignment="center"
