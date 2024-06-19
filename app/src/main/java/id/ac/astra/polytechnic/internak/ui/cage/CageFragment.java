@@ -148,7 +148,7 @@ public class CageFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ExtendedFloatingActionButton fab = view.findViewById(R.id.fab);
         ImageView imageView = view.findViewById(R.id.buttonNotification);
-        Button button = view.findViewById(R.id.Btn_detail);
+        Button button = view.findViewById(R.id.button_rehat);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,14 +167,14 @@ public class CageFragment extends Fragment {
             }
         });
 
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(mlistener != null) {
-//                    mlistener.onDetailCageClicked();
-//                }
-//            }
-//        });
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mlistener != null) {
+                    mlistener.onDetailCageClicked();
+                }
+            }
+        });
     }
 
     @Override
@@ -189,7 +189,7 @@ public class CageFragment extends Fragment {
         if (getActivity() instanceof MainActivity) {
             MainActivity mainActivity = (MainActivity) getActivity();
             setOnCreateCageClickListener(mainActivity);
-//            setOnDetailCageClickListener(mainActivity);
+            setOnDetailCageClickListener(mainActivity);
         }
     }
 

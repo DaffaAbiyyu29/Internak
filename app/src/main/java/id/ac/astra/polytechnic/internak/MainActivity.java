@@ -29,7 +29,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener, CageFragment.OnCreateCageClickListener, CreateCage.OnCreateCageBackClickListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener, CageFragment.OnCreateCageClickListener,
+        CreateCage.OnCreateCageBackClickListener, CageFragment.OnDetailCageClickListener, DetailCage.OndetailBackClickListener {
     ActivityMainBinding binding;
 
     @Override
@@ -100,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         moveToNotificationFragment();
     }
 
-
-
     @Override
     public void OnNotificationBackClickListener() {
         getSupportFragmentManager().beginTransaction()
@@ -147,6 +146,19 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         moveToCreateCageFragment();
     }
 
+    @Override
+    public void onDetailCageClicked() {
+        moveToDetailCageFragment();
+    }
+
+    @Override
+    public void OndetailBackClickListener() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CageFragment())
+                .commit();
+        showBottomNavigationView();
+    }
+
     private void hideBottomNavigationView() {
         binding.bottomNavigationView.setVisibility(View.GONE);
     }
@@ -177,5 +189,6 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
             }
         });
     }
+
 }
 
