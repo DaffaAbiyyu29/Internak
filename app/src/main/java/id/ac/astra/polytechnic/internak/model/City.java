@@ -1,8 +1,11 @@
 package id.ac.astra.polytechnic.internak.model;
 
+import androidx.annotation.NonNull;
+
 import com.google.gson.annotations.SerializedName;
 
 public class City {
+    @SerializedName("cty_id")
     private int cty_id;
     @SerializedName("cty_name")
     private String cty_name;
@@ -40,5 +43,11 @@ public class City {
 
     public void setPrv_id(int prv_id) {
         this.prv_id = prv_id;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return cty_name;
     }
 }

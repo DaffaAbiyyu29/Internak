@@ -1,7 +1,6 @@
 package id.ac.astra.polytechnic.internak;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -11,13 +10,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.List;
-
-import id.ac.astra.polytechnic.internak.api.ApiClient;
-import id.ac.astra.polytechnic.internak.api.ApiResponse;
-import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.ActivityMainBinding;
-import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
 import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
@@ -28,7 +21,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener,CageFragment.OnCreateCageClickListener,NotificationFragment.OnNotificationBackClickListener,CreateCage.OnCreateCageBackClickListener  {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener, CageFragment.OnCreateCageClickListener, CreateCage.OnCreateCageBackClickListener {
     ActivityMainBinding binding;
 
     @Override
@@ -53,10 +46,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                     selectedFragment = new HomeFragment();
                 } else if (item.getItemId() == R.id.nav_cage) {
                     selectedFragment = new CageFragment();
-                } else if (item.getItemId() == R.id.nav_profile) {
-                    selectedFragment = new ProfileFragment();
                 } else if (item.getItemId() == R.id.nav_schedule) {
                     selectedFragment = new ScheduleFragment();
+                } else if (item.getItemId() == R.id.nav_profile) {
+                    selectedFragment = new ProfileFragment();
                 }
 
                 if (selectedFragment != null) {
@@ -68,18 +61,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 return true;
             }
         });
-
-        fetchCages();
     }
 
     private void moveToNotificationFragment() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.main, new NotificationFragment())
-                .commit();
-        hideBottomNavigationView();
-    }
-
-    private void moveToUbahProfilFragment() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, new NotificationFragment())
                 .commit();
@@ -105,6 +89,22 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
     public void OnNotificationBackClickListener() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, new HomeFragment())
+                .commit();
+        showBottomNavigationView();
+    }
+
+    private void hideBottomNavigationView() {
+        binding.bottomNavigationView.setVisibility(View.GONE);
+    }
+
+    private void showBottomNavigationView() {
+        binding.bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onCreateCageClicked() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CreateCage())
                 .commit();
         showBottomNavigationView();
     }

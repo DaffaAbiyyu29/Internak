@@ -22,4 +22,10 @@
     <string name="next">Next</string>
     <string name="started">Get Started</string>
     <string name="rememberPw">Lupa Kata Sandi?</string>
+
+    <string-array name="jenis_kandang_array">
+        <item>Terbuka</item>
+        <item>Tertutup</item>
+    </string-array>
+
 </resources>
