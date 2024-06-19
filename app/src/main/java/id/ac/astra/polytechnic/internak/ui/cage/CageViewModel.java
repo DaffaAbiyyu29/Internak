@@ -15,13 +15,13 @@ import id.ac.astra.polytechnic.internak.api.ApiResponse;
 import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.api.SingleObjectApiResponse;
 import id.ac.astra.polytechnic.internak.model.Cage;
-import id.ac.astra.polytechnic.internak.model.Cage;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CageViewModel extends ViewModel {
-    private Cage cage;
+//    private Cage cage;
+private final MutableLiveData<List<Cage>> cages = new MutableLiveData<>();
     private final MutableLiveData<String> mText;
     private final MutableLiveData<String> buttonAction;
     private static final String TAG = "CageViewModel";
@@ -31,7 +31,6 @@ public class CageViewModel extends ViewModel {
         return createCageSuccess;
     }
 
-
     public CageViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("Kandang");
@@ -39,14 +38,18 @@ public class CageViewModel extends ViewModel {
         buttonAction = new MutableLiveData<>();
     }
 
-    public CageViewModel(Cage cage) {
+    public CageViewModel(Cage cage, MutableLiveData<List<Cage>> cages) {
         mText = new MutableLiveData<>();
         mText.setValue("Kandang");
 
         buttonAction = new MutableLiveData<>();
 
-        this.cage = cage;
         createCage(cage);
+        fetchCages();
+    }
+
+    public LiveData<List<Cage>> getCages() {
+        return cages;
     }
 
     public LiveData<String> getText() {
@@ -95,6 +98,26 @@ public class CageViewModel extends ViewModel {
             public void onFailure(Call<SingleObjectApiResponse<Cage>> call, Throwable t) {
                 Log.e(TAG, "Error: " + t.getMessage());
                 createCageSuccess.setValue(false);
+            }
+        });
+    }
+
+    private void fetchCages() {
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        Call<ApiResponse<Cage>> call = apiService.getAllCages();
+        call.enqueue(new Callback<ApiResponse<Cage>>() {
+            @Override
+            public void onResponse(Call<ApiResponse<Cage>> call, Response<ApiResponse<Cage>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    cages.setValue(response.body().getData());
+                } else {
+                    Log.e(TAG, "Response failed: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ApiResponse<Cage>> call, Throwable t) {
+                Log.e(TAG, "Error: " + t.getMessage());
             }
         });
     }

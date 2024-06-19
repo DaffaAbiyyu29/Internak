@@ -35,7 +35,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="447dp"
-        android:layout_height="match_parent"
+        android:layout_height="870dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
@@ -47,7 +47,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="880dp">
 
             <TextView
                 android:id="@+id/text_cage"
@@ -167,7 +167,59 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view_cages1"
+                        android:layout_width="438dp"
+                        android:layout_height="404dp"
+                        android:orientation="horizontal"
+                        android:padding="8dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@+id/total_kandang"
+                        tools:layout_editor_absoluteX="2dp"
+                        tools:listitem="@layout/cardview_create" />
 
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cardRehat"
+                            android:layout_width="390dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="-150dp"
+                            android:visibility="gone"
+                            app:cardBackgroundColor="@color/white"
+                            app:cardCornerRadius="20dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/total_kandang"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHeight_percent="0.2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintWidth_percent="0.95"
+                            app:strokeColor="@color/white">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="10dp">
+
+                                <TextView
+                                    android:id="@+id/text_article_title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="20dp"
+                                    android:text="Terdapat 1 Kandang tidak aktif berproduksi."
+                                    android:textColor="@color/primary"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <Button
+                                    android:id="@+id/button_bawah_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="end"
+                                    android:layout_marginTop="8dp"
+                                    android:background="@drawable/btn_green_border"
+                                    android:text="Lihat Detail Kandang"
+                                    android:textColor="@color/white" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>

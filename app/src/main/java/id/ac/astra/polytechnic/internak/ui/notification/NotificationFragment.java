@@ -37,6 +37,7 @@ import id.ac.astra.polytechnic.internak.model.Notification;
 
 public class NotificationFragment extends Fragment {
     private OnNotificationBackClickListener listener;
+//    private OnNotificationBackClickListenerCage listenerC;
     private RecyclerView recyclerView;
     private RecyclerView recyclerView2;
     private NotificationAdapter notificationAdapter;
@@ -51,6 +52,10 @@ public class NotificationFragment extends Fragment {
     public interface OnNotificationBackClickListener {
         void OnNotificationBackClickListener();
     }
+
+//    public interface OnNotificationBackClickListenerCage {
+//        void OnNotificationBackClickListenerCage();
+//    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -102,10 +107,18 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.OnNotificationBackClickListener();
+                    listener.   OnNotificationBackClickListener();
                 }
             }
         });
+//        imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (listenerC != null) {
+//                    listenerC.OnNotificationBackClickListenerCage();
+//                }
+//            }
+//        });
 
         popupFilterNotification = view.findViewById(R.id.popup_filter_notification);
         buttonFilterNotification = view.findViewById(R.id.button_filter_notification);
@@ -150,12 +163,17 @@ public class NotificationFragment extends Fragment {
         if (getActivity() instanceof MainActivity) {
             MainActivity mainActivity = (MainActivity) getActivity();
             setOnNotificationBackClickListener(mainActivity);
+//            setOnNotificationBackClickListenerCage(mainActivity);
         }
     }
 
     public void setOnNotificationBackClickListener(OnNotificationBackClickListener listener) {
         this.listener = listener;
     }
+
+//    public void setOnNotificationBackClickListenerCage(OnNotificationBackClickListenerCage listenerC) {
+//        this.listenerC = listenerC;
+//    }
 
     private void showPopupWithAnimation() {
         if (popupFilterNotification.getVisibility() == View.GONE) {
