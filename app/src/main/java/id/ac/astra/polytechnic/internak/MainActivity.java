@@ -12,11 +12,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import id.ac.astra.polytechnic.internak.databinding.ActivityMainBinding;
 import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
+import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
+import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 
-public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener, CageFragment.OnCreateCageClickListener, CreateCage.OnCreateCageBackClickListener {
     ActivityMainBinding binding;
 
     @Override
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                     selectedFragment = new HomeFragment();
                 } else if (item.getItemId() == R.id.nav_cage) {
                     selectedFragment = new CageFragment();
+                } else if (item.getItemId() == R.id.nav_schedule) {
+                    selectedFragment = new ScheduleFragment();
                 } else if (item.getItemId() == R.id.nav_profile) {
                     selectedFragment = new ProfileFragment();
                 }
@@ -90,6 +94,22 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
 
     private void showBottomNavigationView() {
         binding.bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onCreateCageClicked() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CreateCage())
+                .commit();
+        showBottomNavigationView();
+    }
+
+    @Override
+    public void OnCreateCageBackClickListener() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CageFragment())
+                .commit();
+        showBottomNavigationView();
     }
 }
 

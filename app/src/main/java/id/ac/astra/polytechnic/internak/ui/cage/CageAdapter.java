@@ -1,5 +1,6 @@
 package id.ac.astra.polytechnic.internak.ui.cage;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiClient;
 import id.ac.astra.polytechnic.internak.api.ApiResponse;
 import id.ac.astra.polytechnic.internak.api.ApiService;
+import id.ac.astra.polytechnic.internak.api.SingleObjectApiResponse;
 import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.model.City;
 import retrofit2.Call;
@@ -21,7 +24,7 @@ import retrofit2.Response;
 
 public class CageAdapter extends RecyclerView.Adapter<CageAdapter.CageViewHolder> {
     private List<Cage> cageItemList;
-    private ApiService apiService; // Tambahkan atribut ApiService
+    private ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
     public CageAdapter(List<Cage> cageItemList, ApiService apiService) {
         this.cageItemList = cageItemList;
@@ -39,19 +42,27 @@ public class CageAdapter extends RecyclerView.Adapter<CageAdapter.CageViewHolder
     public void onBindViewHolder(@NonNull final CageViewHolder holder, int position) {
         final Cage cageItem = cageItemList.get(position);
 
-        // Panggil metode getCityById untuk mendapatkan data kota berdasarkan ID
-        apiService.getCityById(cageItem.getCtyId()).enqueue(new Callback<ApiResponse<City>>() {
+        // Tambahkan log untuk memastikan posisi dan item cage benar
+        Log.d("CageAdapter", "Cage Id: " + cageItem.getCtyId() + " Cage Name : "+cageItem.getCagName());
+
+        // Memanggil API untuk mendapatkan data kota berdasarkan id kota dari cageItem
+        Call<SingleObjectApiResponse<City>> call = apiService.getCityById(cageItem.getCtyId());
+        call.enqueue(new Callback<SingleObjectApiResponse<City>>() {
             @Override
-            public void onResponse(@NonNull Call<ApiResponse<City>> call, @NonNull Response<ApiResponse<City>> response) {
-                if (response.isSuccessful() && response.body() != null && response.body().getData() != null) {
-                    City city = (City) response.body().getData();
-                    holder.cageLocation.setText(city.getCty_name()); // Atur teks berdasarkan nama kota
+            public void onResponse(Call<SingleObjectApiResponse<City>> call, Response<SingleObjectApiResponse<City>> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    City city = response.body().getData();
+                    Log.d("CageAdapter", "sukses: " + city.getCty_name());
+                    holder.cageLocation.setText(city.getCty_name());
+                } else {
+                    // Tangani respons tidak berhasil
+                    Log.e("CageAdapter", "Response not successful or body is null");
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<ApiResponse<City>> call, @NonNull Throwable t) {
-                // Tangani kegagalan jika terjadi
+            public void onFailure(Call<SingleObjectApiResponse<City>> call, Throwable t) {
+                Log.e("CageAdapter", "Error: " + t.getMessage());
             }
         });
 

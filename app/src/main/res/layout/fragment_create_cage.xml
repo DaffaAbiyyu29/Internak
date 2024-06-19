@@ -55,7 +55,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
-            android:layout_height="920dp"
+            android:layout_height="match_parent"
             android:layout_marginTop="75dp"
             app:cardBackgroundColor="@color/white"
             app:cardElevation="8dp"
@@ -64,20 +64,20 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="920dp">
+                android:layout_height="match_parent">
 
                 <EditText
                     android:id="@+id/nama_kandang"
                     android:layout_width="315dp"
                     android:layout_height="43dp"
-                    android:layout_marginTop="60dp"
                     android:background="@drawable/rounded_edit_text"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.474"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/nama" />
 
                 <TextView
                     android:id="@+id/nama"
@@ -93,159 +93,162 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/jenis_kandang"
                     android:layout_width="315dp"
                     android:layout_height="43dp"
-                    android:layout_marginTop="160dp"
                     android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_down_arrow"
                     android:hint="Pilih Jenis Kandang"
+                    android:editable="false"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.474"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/jenis" />
 
                 <TextView
                     android:id="@+id/jenis"
                     android:layout_width="126dp"
                     android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="132dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.199"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/nama_kandang" />
 
                 <TextView
                     android:id="@+id/lokasi"
                     android:layout_width="126dp"
                     android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="236dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.199"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/jenis_kandang" />
 
                 <EditText
                     android:id="@+id/lokasi_kandang"
                     android:layout_width="313dp"
                     android:layout_height="76dp"
-                    android:layout_marginTop="260dp"
                     android:background="@drawable/rounded_edit_text"
                     android:textColor="@color/black"
                     android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.474"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/lokasi" />
 
                 <TextView
                     android:id="@+id/provinsi"
                     android:layout_width="126dp"
                     android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="380dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.199"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/lokasi_kandang" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/provinsi_kandang"
                     android:layout_width="315dp"
                     android:layout_height="43dp"
-                    android:layout_marginTop="408dp"
                     android:background="@drawable/rounded_edit_text"
-                    android:textColor="@color/black"
-                    android:textSize="16sp"
                     android:drawableRight="@drawable/ic_down_arrow"
+                    android:textColor="@color/black"
+                    android:editable="false"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.474"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/provinsi" />
 
                 <TextView
                     android:id="@+id/kota"
                     android:layout_width="126dp"
                     android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="484dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.205"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/provinsi_kandang" />
 
-                <EditText
+                <Spinner
                     android:id="@+id/kota_kandang"
                     android:layout_width="315dp"
                     android:layout_height="43dp"
-                    android:layout_marginTop="516dp"
                     android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:editable="false"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.474"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/kota" />
+
 
 
                 <TextView
                     android:id="@+id/kapasitas"
                     android:layout_width="149dp"
                     android:layout_height="23dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="588dp"
                     android:layout_marginEnd="8dp"
                     android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.222"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/kota_kandang" />
 
                 <EditText
                     android:id="@+id/kapasitas_hewan"
                     android:layout_width="315dp"
                     android:layout_height="43dp"
-                    android:layout_marginTop="620dp"
                     android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_arrow_up_down"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:drawableRight="@drawable/ic_arrow_up_down"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/kapasitas" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/button_simpan_kandang"
                     android:layout_width="313dp"
                     android:layout_height="42dp"
-                    android:layout_marginTop="120dp"
+                    android:layout_marginTop="50dp"
                     android:text="Simpan Kandang"
                     android:textSize="12sp"
                     app:cornerRadius="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.503"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/kapasitas_hewan" />
+                    app:layout_constraintTop_toBottomOf="@+id/kapasitas_hewan" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

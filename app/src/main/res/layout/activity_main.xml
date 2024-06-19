@@ -12,20 +12,37 @@
     <FrameLayout
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:layout_gravity="top"/>
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottomNavigationView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:background="@drawable/bottom_nav_background"-->
+<!--        app:labelVisibilityMode="labeled"-->
+<!--        app:itemIconTint="@color/icon_color"-->
+<!--        app:menu="@menu/bottom_navigation" >-->
+<!--    </com.google.android.material.bottomnavigation.BottomNavigationView>-->
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
         android:background="@drawable/bottom_nav_background"
-        app:labelVisibilityMode="labeled"
+        app:itemIconSize="30dp"
         app:itemIconTint="@color/icon_color"
-        app:menu="@menu/bottom_navigation" >
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:itemRippleColor="@color/primary"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_navigation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
