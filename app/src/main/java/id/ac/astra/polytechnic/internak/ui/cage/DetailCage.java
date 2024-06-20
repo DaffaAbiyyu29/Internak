@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
 import id.ac.astra.polytechnic.internak.MainActivity;
@@ -24,6 +25,7 @@ import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 
 public class DetailCage extends Fragment {
     private OndetailBackClickListener listener;
+    private OnCreateIoTClickListener CreateIoT;
     private FragmentCageDetailBinding binding;
     private MaterialCardView popupadd;
     private ImageView mImageView;
@@ -34,11 +36,17 @@ public class DetailCage extends Fragment {
         void OndetailBackClickListener();
     }
 
+    public interface OnCreateIoTClickListener {
+        void OnCreateIoTClickListener();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentCageDetailBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        View root = binding.getRoot();
+
+        return root;
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -52,6 +60,16 @@ public class DetailCage extends Fragment {
             public void onClick(View v) {
                 if (listener != null) {
                     listener.OndetailBackClickListener();
+                }
+            }
+        });
+
+        MaterialButton button = view.findViewById(R.id.tambah_device);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CreateIoT != null){
+                    CreateIoT.OnCreateIoTClickListener();
                 }
             }
         });
@@ -142,7 +160,7 @@ public class DetailCage extends Fragment {
         if (getActivity() instanceof MainActivity) {
             MainActivity mainActivity = (MainActivity) getActivity();
             setOndetailBackClickListener(mainActivity);
-//            setOnNotificationBackClickListenerCage(mainActivity);
+            setOnCreateIoTClickListener(mainActivity);
         }
     }
 
@@ -156,4 +174,7 @@ public class DetailCage extends Fragment {
         this.listener = listener;
     }
 
+    public void setOnCreateIoTClickListener(OnCreateIoTClickListener listener) {
+        this.CreateIoT = listener;
+    }
 }

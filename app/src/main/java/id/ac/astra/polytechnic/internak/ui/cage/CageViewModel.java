@@ -20,8 +20,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CageViewModel extends ViewModel {
-//    private Cage cage;
-private final MutableLiveData<List<Cage>> cages = new MutableLiveData<>();
+    private final MutableLiveData<List<Cage>> cages = new MutableLiveData<>();
     private final MutableLiveData<String> mText;
     private final MutableLiveData<String> buttonAction;
     private static final String TAG = "CageViewModel";
@@ -36,20 +35,12 @@ private final MutableLiveData<List<Cage>> cages = new MutableLiveData<>();
         mText.setValue("Kandang");
 
         buttonAction = new MutableLiveData<>();
+        fetchCages();  // Ensure cages are fetched when the ViewModel is created
     }
 
-    public CageViewModel(Cage cage, MutableLiveData<List<Cage>> cages) {
-        mText = new MutableLiveData<>();
-        mText.setValue("Kandang");
-
-        buttonAction = new MutableLiveData<>();
-
+    public CageViewModel(Cage cage) {
+        this();
         createCage(cage);
-        fetchCages();
-    }
-
-    public LiveData<List<Cage>> getCages() {
-        return cages;
     }
 
     public LiveData<String> getText() {
@@ -58,6 +49,10 @@ private final MutableLiveData<List<Cage>> cages = new MutableLiveData<>();
 
     public LiveData<String> getButtonAction() {
         return buttonAction;
+    }
+
+    public LiveData<List<Cage>> getCages() {
+        return cages;
     }
 
     public void onLeftButtonClick() {
@@ -77,9 +72,9 @@ private final MutableLiveData<List<Cage>> cages = new MutableLiveData<>();
                 if (response.isSuccessful()) {
                     SingleObjectApiResponse<Cage> apiResponse = response.body();
                     if (apiResponse != null && apiResponse.getStatus() == 200) {
-                        Cage createdCage = apiResponse.getData();
                         Log.d(TAG, "Success to create Cage. Response message: " + apiResponse.getMessage());
                         createCageSuccess.setValue(true);
+                        fetchCages();  // Refresh the list after creating a new cage
                     } else {
                         String errorMessage = "Failed to create Cage. ";
                         if (apiResponse != null) {

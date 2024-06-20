@@ -28,6 +28,8 @@ import java.util.List;
 
 import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiClient;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentCageBinding;
 import id.ac.astra.polytechnic.internak.model.Cage;
 
@@ -81,7 +83,7 @@ public class CageFragment extends Fragment {
                 cageViewModel.onLeftButtonClick();
                 leftButton.setBackgroundColor(activeBackgroundColor);
                 rightButton.setBackgroundColor(inactiveBackgroundColor);
-                totalKandangTextView.setText("Terdapat 2 kandang");
+                updateTotalKandangText(cageList.size());
                 recyclerView.setVisibility(View.VISIBLE);
                 cardRehat.setVisibility(View.GONE);
             }
@@ -112,24 +114,33 @@ public class CageFragment extends Fragment {
         Log.d(TAG, "Initializing RecyclerView and setting adapter.");
         recyclerView = binding.recyclerViewCages1;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        cageAdapter = new CageAdapterC(new ArrayList<>());
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        cageAdapter = new CageAdapterC(new ArrayList<>(), apiService);
         recyclerView.setAdapter(cageAdapter);
         Log.d(TAG, "RecyclerView initialized with adapter.");
-        setupObservers(cageViewModel);
+        setupObservers();
 
         return root;
     }
 
-    private void setupObservers(CageViewModel cageViewModel) {
+    private void setupObservers() {
         cageViewModel.getCages().observe(getViewLifecycleOwner(), new Observer<List<Cage>>() {
             @Override
             public void onChanged(List<Cage> cages) {
                 if (cages != null) {
                     Log.d(TAG, "Cages updated: " + cages.size());
+                    cageList.clear();
+                    cageList.addAll(cages);
                     cageAdapter.updateData(cages);
+                    updateTotalKandangText(cages.size());
                 }
             }
         });
+    }
+
+    private void updateTotalKandangText(int totalCages) {
+        TextView totalKandangTextView = binding.totalKandang;
+        totalKandangTextView.setText("Terdapat " + totalCages + " kandang");
     }
 
     @Override

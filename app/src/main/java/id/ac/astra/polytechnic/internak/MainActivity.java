@@ -20,6 +20,7 @@ import id.ac.astra.polytechnic.internak.databinding.ActivityMainBinding;
 import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
 import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
+import id.ac.astra.polytechnic.internak.ui.cage.CreteIot;
 import id.ac.astra.polytechnic.internak.ui.cage.DetailCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
@@ -31,7 +32,8 @@ import retrofit2.Response;
 import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener, CageFragment.OnCreateCageClickListener,
-        CreateCage.OnCreateCageBackClickListener, CageFragment.OnDetailCageClickListener, DetailCage.OndetailBackClickListener, ScheduleFragment.OnCreateScheduleClickListener, CreateScheduleFragment.OnScheduleBackClickListener {
+        CreateCage.OnCreateCageBackClickListener, CageFragment.OnDetailCageClickListener, DetailCage.OndetailBackClickListener, ScheduleFragment.OnCreateScheduleClickListener, CreateScheduleFragment.OnScheduleBackClickListener,
+        DetailCage.OnCreateIoTClickListener, CreteIot.OnCreateIoTBackClickListener{
     ActivityMainBinding binding;
 
     @Override
@@ -205,6 +207,22 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 .replace(R.id.main, new ScheduleFragment())
                 .commit();
         showBottomNavigationView();
+    }
+
+    @Override
+    public void OnCreateIoTClickListener() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new CreteIot())
+                .commit();
+        hideBottomNavigationView();
+    }
+
+    @Override
+    public void OnCreateIoTBackClickListener() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new DetailCage())
+                .commit();
+        hideBottomNavigationView();
     }
 }
 
