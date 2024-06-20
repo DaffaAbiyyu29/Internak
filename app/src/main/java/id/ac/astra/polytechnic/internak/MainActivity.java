@@ -18,7 +18,7 @@ import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 import id.ac.astra.polytechnic.internak.ui.login.SplashScreenFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener{
     ActivityMainBinding binding;
 
     @Override
@@ -88,5 +88,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void showBottomNavigationView() {
         binding.bottomNavigationView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onNotificationClicked() {
+
     }
 }
