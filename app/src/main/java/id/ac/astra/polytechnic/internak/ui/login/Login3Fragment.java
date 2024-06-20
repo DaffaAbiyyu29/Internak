@@ -14,7 +14,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import id.ac.astra.polytechnic.internak.HomeActivity;
+//import id.ac.astra.polytechnic.internak.HomeActivity;
+import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 
@@ -25,9 +26,14 @@ public class Login3Fragment extends Fragment {
 
         Button nextButton = view.findViewById(R.id.registerButton);
         nextButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
-            startActivity(intent);
-            getActivity().finish();
+//            Intent intent = new Intent(getActivity(), MainActivity.class);
+//            startActivity(intent);
+//            getActivity().finish();
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main, new HomeFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
         return view;
