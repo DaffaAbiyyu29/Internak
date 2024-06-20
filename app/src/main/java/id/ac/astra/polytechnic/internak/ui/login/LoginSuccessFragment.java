@@ -1,6 +1,7 @@
 package id.ac.astra.polytechnic.internak.ui.login;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import id.ac.astra.polytechnic.internak.HomeActivity;
 import id.ac.astra.polytechnic.internak.R;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 
@@ -24,11 +26,9 @@ public class LoginSuccessFragment extends Fragment {
 
         ImageButton nextButton = view.findViewById(R.id.arrowButton);
         nextButton.setOnClickListener(v -> {
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.main, new HomeFragment());
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
+            getActivity().finish();
         });
 
         return view;
