@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/create_cage"
+    tools:context=".ui.schedule.CreateScheduleFragment">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="0dp"
+        app:strokeColor="@android:color/transparent"
+        tools:layout_editor_absoluteX="-129dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            app:cardBackgroundColor="@color/primary"
+            app:cardCornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/primary">
+
+            <ImageView
+                android:id="@+id/button_back_schedule"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:src="@drawable/ic_left_arrow"
+                android:tooltipText="Back To Dashboard"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Tambah Jadwal"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="75dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/nama_kegiatan"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nama" />
+
+                <TextView
+                    android:id="@+id/nama"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:text="Nama Kegiatan"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/kandang"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:hint="Pilih Jenis Kandang"
+                    android:editable="false"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kandang_tx" />
+
+                <TextView
+                    android:id="@+id/kandang_tx"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:text="Kandang"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nama_kegiatan" />
+
+                <TextView
+                    android:id="@+id/jns_hewan_tx"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:text="Jenis Hewan"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kandang" />
+
+                <EditText
+                    android:id="@+id/jns_kandang"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jns_hewan_tx" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="315dp"
+                    android:layout_height="64dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jns_kandang">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="140dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tgl_mulai_tx"
+                            android:layout_width="126dp"
+                            android:layout_height="21dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Tanggal Awal"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/tgl_mulai"
+                            android:layout_width="140dp"
+                            android:layout_height="43dp"
+                            android:background="@drawable/rounded_edit_text"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tgl_mulai_tx" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="21dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:text="Until"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="140dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/tgl_akhir_tx"
+                            android:layout_width="126dp"
+                            android:layout_height="21dp"
+                            android:layout_marginStart="10dp"
+                            android:text="Tanggal Akhir"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <EditText
+                            android:id="@+id/tgl_akhir"
+                            android:layout_width="140dp"
+                            android:layout_height="43dp"
+                            android:background="@drawable/rounded_edit_text"
+                            android:paddingStart="16dp"
+                            android:paddingEnd="16dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tgl_akhir_tx" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_simpan_kandang"
+                    android:layout_width="313dp"
+                    android:layout_height="42dp"
+                    android:text="Simpan"
+                    android:textSize="12sp"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

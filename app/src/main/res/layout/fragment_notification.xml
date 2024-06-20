@@ -77,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             app:cardBackgroundColor="@color/white"
+            app:strokeWidth="0dp"
             app:strokeColor="@color/white"
             android:layout_gravity="center">
 
@@ -108,10 +109,18 @@
             app:cardBackgroundColor="@color/white"
             app:strokeColor="@android:color/transparent">
 
+            <FrameLayout
+                android:id="@+id/popup_filter_notification2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bottom_nav_background"/>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 app:cardBackgroundColor="@android:color/white"
-                app:strokeColor="@android:color/transparent"
+                app:strokeWidth="0dp"
+                app:cardElevation="5dp"
+                app:strokeColor="@android:color/black"
                 android:layout_height="70dp">
 
                 <com.google.android.material.card.MaterialCardView

@@ -12,4 +12,6 @@
     <color name="light_grey">#F0F3FF</color>
     <color name="brown1">#885200</color>
     <color name="blue_sea">#0288C1</color>
+    <color name="colorPrimary">#26BFBF</color>
+    <color name="colorSecondary">#89AFFF</color>
 </resources>
