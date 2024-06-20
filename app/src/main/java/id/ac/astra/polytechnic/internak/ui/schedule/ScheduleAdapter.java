@@ -1,5 +1,6 @@
 package id.ac.astra.polytechnic.internak.ui.schedule;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
@@ -15,14 +15,22 @@ import com.google.android.material.card.MaterialCardView;
 import java.util.List;
 
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.model.Schedule;
 
 public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHolder> {
 
     private List<Schedule> scheduleList;
+    private ApiService apiService;
 
-    public ScheduleAdapter(List<Schedule> scheduleList) {
+    public ScheduleAdapter(List<Schedule> scheduleList, ApiService apiService) {
         this.scheduleList = scheduleList;
+        this.apiService = apiService;
+    }
+
+    public void updateData(List<Schedule> schedules) {
+        this.scheduleList = schedules;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,22 +43,20 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Schedule schedule = scheduleList.get(position);
-        holder.startTime.setText(schedule.getStartTime());
-        holder.endTime.setText(schedule.getEndTime());
-        holder.name.setText(schedule.getName());
-        holder.description.setText(schedule.getDescription());
 
-        // Mengubah warna stroke berdasarkan indeks item
+        holder.startTime.setText(schedule.getSchDateStart() + " - ");
+        holder.endTime.setText(schedule.getSchDateEnd());
+        holder.name.setText(schedule.getSchName());
+        holder.description.setText(schedule.getSchJenisMakan());
+
         int strokeColorRes = (position % 2 == 0) ? R.color.colorPrimary : R.color.colorSecondary;
         int strokeColor = holder.itemView.getContext().getResources().getColor(strokeColorRes);
         holder.cardView.setStrokeColor(strokeColor);
 
-        // Mengubah backgroundTint pada sideLine berdasarkan indeks item
         int sideLineColorRes = (position % 2 == 0) ? R.color.colorPrimary : R.color.colorSecondary;
         int sideLineColor = holder.itemView.getContext().getResources().getColor(sideLineColorRes);
         holder.sideLine.setCardBackgroundColor(sideLineColor);
 
-        // Mengubah src pada icon_cube berdasarkan indeks item
         int imageResId = (position % 2 == 0) ? R.drawable.ic_cube : R.drawable.ic_cube2;
         holder.iconCube.setImageResource(imageResId);
     }

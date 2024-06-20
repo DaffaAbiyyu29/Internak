@@ -2,30 +2,25 @@ package id.ac.astra.polytechnic.internak.ui.schedule;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import id.ac.astra.polytechnic.internak.R;
-import id.ac.astra.polytechnic.internak.databinding.FragmentProfileBinding;
+import id.ac.astra.polytechnic.internak.api.ApiClient;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentScheduleBinding;
 import id.ac.astra.polytechnic.internak.model.Schedule;
-import id.ac.astra.polytechnic.internak.ui.cage.CageFragment;
-import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 
 public class ScheduleFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -33,6 +28,7 @@ public class ScheduleFragment extends Fragment {
     private List<Schedule> scheduleList;
     private FragmentScheduleBinding binding;
     private OnCreateScheduleClickListener listener;
+    private ScheduleAdapter mScheduleAdapter;
 
     public interface OnCreateScheduleClickListener {
         void onCreateScheduleClicked();
@@ -46,16 +42,13 @@ public class ScheduleFragment extends Fragment {
         binding = FragmentScheduleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        recyclerView = root.findViewById(R.id.recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); // Gunakan getContext() di sini
+        ApiService apiService = ApiClient.getClient().create(ApiService.class); // Pastikan RetrofitClient dan konfigurasi Anda telah disiapkan
+        mScheduleAdapter = new ScheduleAdapter(new ArrayList<>(), apiService);
+        RecyclerView recyclerViewSchedules = root.findViewById(R.id.recycler_view);
+        recyclerViewSchedules.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewSchedules.setAdapter(mScheduleAdapter);
 
-        scheduleList = new ArrayList<>();
-        scheduleList.add(new Schedule("11.30 AM", "12.30 PM", "Auto Feeder", "Makan Konserat + Minum"));
-        scheduleList.add(new Schedule("01.00 PM", "02.00 PM", "Auto Watering", "Minum Air + Vitamin"));
-        scheduleList.add(new Schedule("01.00 PM", "02.00 PM", "Auto Watering", "Minum Air + Vitamin"));
-
-        scheduleAdapter = new ScheduleAdapter(scheduleList);
-        recyclerView.setAdapter(scheduleAdapter);
+        setupObservers(scheduleViewModel);
 
         return root;
     }
@@ -83,8 +76,20 @@ public class ScheduleFragment extends Fragment {
             listener = (ScheduleFragment.OnCreateScheduleClickListener) context;
         } else {
             throw new ClassCastException(context.toString()
-                    + " must implement HomeFragment.OnNotificationClickListener");
+                    + " must implement ScheduleFragment.OnNotificationClickListener");
         }
+    }
+
+    private void setupObservers(ScheduleViewModel scheduleViewModel) {
+        scheduleViewModel.getSchedules().observe(getViewLifecycleOwner(), new Observer<List<Schedule>>() {
+            @Override
+            public void onChanged(List<Schedule> schedules) {
+                if (schedules != null) {
+                    Log.d("ScheduleFragment", "Schedules updated: " + schedules.size());
+                    mScheduleAdapter.updateData(schedules); // Ganti scheduleAdapter dengan mScheduleAdapter
+                }
+            }
+        });
     }
 
     @Override

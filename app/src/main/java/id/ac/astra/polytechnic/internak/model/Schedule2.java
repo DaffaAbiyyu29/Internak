@@ -2,31 +2,28 @@ package id.ac.astra.polytechnic.internak.model;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.lang.String;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.time.LocalDateTime;
 
-public class Schedule {
+public class Schedule2 {
+    @SerializedName("sch_id")
     private Integer schId;
-    @SerializedName("dtcId")
+    @SerializedName("dtc_id")
     private Integer dtcId;
-    @SerializedName("schStatus")
+    @SerializedName("sch_status")
     private Integer schStatus;
-    @SerializedName("schDateStart")
-    private String schDateStart;
-    @SerializedName("schDateEnd")
-    private String schDateEnd;
-    @SerializedName("schName")
+    @SerializedName("sch_datestart")
+    private LocalDateTime schDateStart;
+    @SerializedName("sch_dateend")
+    private LocalDateTime schDateEnd;
+    @SerializedName("sch_name")
     private String schName;
-    @SerializedName("schJenisMakan")
+    @SerializedName("sch_jenismakan")
     private String schJenisMakan;
 
-    public Schedule() {
+    public Schedule2() {
     }
 
-    public Schedule(Integer schId, Integer dtcId, Integer schStatus, String schDateStart, String schDateEnd, String schName, String schJenisMakan) {
+    public Schedule2(Integer schId, Integer dtcId, Integer schStatus, LocalDateTime schDateStart, LocalDateTime schDateEnd, String schName, String schJenisMakan) {
         this.schId = schId;
         this.dtcId = dtcId;
         this.schStatus = schStatus;
@@ -60,19 +57,19 @@ public class Schedule {
         this.schStatus = schStatus;
     }
 
-    public String getSchDateStart() {
-        return formatTime(schDateStart);
+    public LocalDateTime getSchDateStart() {
+        return schDateStart;
     }
 
-    public void setSchDateStart(String schDateStart) {
+    public void setSchDateStart(LocalDateTime schDateStart) {
         this.schDateStart = schDateStart;
     }
 
-    public String getSchDateEnd() {
-        return formatTime(schDateEnd);
+    public LocalDateTime getSchDateEnd() {
+        return schDateEnd;
     }
 
-    public void setSchDateEnd(String schDateEnd) {
+    public void setSchDateEnd(LocalDateTime schDateEnd) {
         this.schDateEnd = schDateEnd;
     }
 
@@ -90,17 +87,5 @@ public class Schedule {
 
     public void setSchJenisMakan(String schJenisMakan) {
         this.schJenisMakan = schJenisMakan;
-    }
-
-    private String formatTime(String dateTime) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-        SimpleDateFormat outputFormat = new SimpleDateFormat("HH.mm", Locale.getDefault());
-        try {
-            Date date = inputFormat.parse(dateTime);
-            return outputFormat.format(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return dateTime;
-        }
     }
 }

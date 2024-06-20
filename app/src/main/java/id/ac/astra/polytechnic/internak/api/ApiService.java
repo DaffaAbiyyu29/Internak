@@ -4,6 +4,7 @@ import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.model.City;
 import id.ac.astra.polytechnic.internak.model.Notification;
 import id.ac.astra.polytechnic.internak.model.Province;
+import id.ac.astra.polytechnic.internak.model.Schedule;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -13,6 +14,9 @@ import retrofit2.http.Path;
 public interface ApiService {
     @GET("api/cage/getAll")
     Call<ApiResponse<Cage>> getAllCages();
+
+    @GET("api/schedule/getAll")
+    Call<ApiResponse<Schedule>> getAllSchedules();
 
     @GET("provinces/getProvince")
     Call<ApiResponse<Province>> getAllProvinces();
