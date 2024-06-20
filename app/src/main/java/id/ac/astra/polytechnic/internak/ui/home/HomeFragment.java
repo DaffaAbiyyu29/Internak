@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,18 +20,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiClient;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentHomeBinding;
-import id.ac.astra.polytechnic.internak.ui.cage.Cage;
-import id.ac.astra.polytechnic.internak.ui.cage.CageAdapter;
+import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.ui.article.Article;
 import id.ac.astra.polytechnic.internak.ui.article.ArticleAdapter;
+import id.ac.astra.polytechnic.internak.ui.cage.CageAdapter;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private OnNotificationClickListener listener;
     private ArticleAdapter articleAdapter;
     private List<Article> articleList;
-    private List<Cage> cageItemList;
+    private CageAdapter cageAdapter;
     private static final String TAG = "HomeFragment";
 
     // Antarmuka untuk memberi tahu MainActivity saat gambar diklik
@@ -49,6 +52,7 @@ public class HomeFragment extends Fragment {
 
         Log.d(TAG, "onCreateView: setupRecyclerView akan dipanggil");
         setupRecyclerView();
+        setupObservers(homeViewModel);
 
         return root;
     }
@@ -70,18 +74,31 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(articleAdapter);
 
+//        articleAdapter = new ArticleAdapter(new ArrayList<>());
+//        RecyclerView recyclerView = binding.recyclerViewArticles;
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerView.setAdapter(articleAdapter);
+
         Log.d(TAG, "setupRecyclerView: RecyclerView setup selesai");
 
-        cageItemList = new ArrayList<>();
-        cageItemList.add(new Cage("HARVEST MOON", "4 April 2024", "Bandung", 200, 25, 20));
-        cageItemList.add(new Cage("HARVEST MOON", "4 April 2024", "Bandung", 200, 25, 20));
-        cageItemList.add(new Cage("HARVEST MOON", "4 April 2024", "Bandung", 200, 25, 20));
-        cageItemList.add(new Cage("HARVEST MOON", "4 April 2024", "Bandung", 200, 25, 20));
-
-        CageAdapter cageAdapter = new CageAdapter(cageItemList);
+        ApiService apiService = ApiClient.getClient().create(ApiService.class); // Pastikan RetrofitClient dan konfigurasi Anda telah disiapkan
+        cageAdapter = new CageAdapter(new ArrayList<>(), apiService);
         RecyclerView recyclerViewCages = binding.recyclerViewCages;
         recyclerViewCages.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerViewCages.setAdapter(cageAdapter);
+
+    }
+
+    private void setupObservers(HomeViewModel homeViewModel) {
+        homeViewModel.getCages().observe(getViewLifecycleOwner(), new Observer<List<Cage>>() {
+            @Override
+            public void onChanged(List<Cage> cages) {
+                if (cages != null) {
+                    Log.d(TAG, "Cages updated: " + cages.size());
+                    cageAdapter.updateData(cages);
+                }
+            }
+        });
     }
 
     @Override

@@ -48,7 +48,7 @@
         android:textAlignment="viewEnd" />
 
     <TextView
-        android:id="@+id/text_card_cage_locate"
+        android:id="@+id/text_card_cage_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

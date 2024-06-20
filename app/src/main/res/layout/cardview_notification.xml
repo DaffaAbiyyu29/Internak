@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardCornerRadius="0dp"
+        app:cardBackgroundColor="@color/white"
         app:strokeColor="@android:color/transparent">
 
         <!-- Main Content Container -->

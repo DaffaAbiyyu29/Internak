@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/create_cage"
+    tools:context=".ui.cage.CreateCage">
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="0dp"
+        app:strokeColor="@android:color/transparent"
+        tools:layout_editor_absoluteX="-129dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            app:cardBackgroundColor="@color/primary"
+            app:cardCornerRadius="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/primary">
+
+            <ImageView
+                android:id="@+id/button_back_cage"
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:clickable="true"
+                android:src="@drawable/ic_left_arrow"
+                android:tooltipText="Back To Dashboard"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Tambah Kandang"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="75dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/nama_kandang"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nama" />
+
+                <TextView
+                    android:id="@+id/nama"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Spinner
+                    android:id="@+id/jenis_kandang"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:hint="Pilih Jenis Kandang"
+                    android:editable="false"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jenis" />
+
+                <TextView
+                    android:id="@+id/jenis"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nama_kandang" />
+
+                <TextView
+                    android:id="@+id/lokasi"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/jenis_kandang" />
+
+                <EditText
+                    android:id="@+id/lokasi_kandang"
+                    android:layout_width="313dp"
+                    android:layout_height="76dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lokasi" />
+
+                <TextView
+                    android:id="@+id/provinsi"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.199"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/lokasi_kandang" />
+
+                <Spinner
+                    android:id="@+id/provinsi_kandang"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:textColor="@color/black"
+                    android:editable="false"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/provinsi" />
+
+                <TextView
+                    android:id="@+id/kota"
+                    android:layout_width="126dp"
+                    android:layout_height="21dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.205"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/provinsi_kandang" />
+
+                <Spinner
+                    android:id="@+id/kota_kandang"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_down_arrow"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:editable="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kota" />
+
+
+
+                <TextView
+                    android:id="@+id/kapasitas"
+                    android:layout_width="149dp"
+                    android:layout_height="23dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.222"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kota_kandang" />
+
+                <EditText
+                    android:id="@+id/kapasitas_hewan"
+                    android:layout_width="315dp"
+                    android:layout_height="43dp"
+                    android:background="@drawable/rounded_edit_text"
+                    android:drawableRight="@drawable/ic_arrow_up_down"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kapasitas" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button_simpan_kandang"
+                    android:layout_width="313dp"
+                    android:layout_height="42dp"
+                    android:layout_marginTop="50dp"
+                    android:text="Simpan Kandang"
+                    android:textSize="12sp"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/kapasitas_hewan" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
