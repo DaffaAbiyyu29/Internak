@@ -16,9 +16,8 @@ import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
-import id.ac.astra.polytechnic.internak.ui.login.SplashScreenFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener {
     ActivityMainBinding binding;
 
     @Override
@@ -28,10 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         if (savedInstanceState == null) {
-            hideBottomNavigationView();
-            // Load the SplashScreenFragment as the default fragment
+            // Load the default fragment
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main, new SplashScreenFragment())
+                    .replace(R.id.main, new HomeFragment())
                     .commit();
         }
 
@@ -76,6 +74,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void backToDashboard() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.main, new HomeFragment())
+                .commit();
+        showBottomNavigationView();
+    }
+
+    @Override
+    public void onNotificationClicked() {
+        // Panggil moveToNotificationFragment saat gambar diklik
+        moveToNotificationFragment();
+    }
+
+    @Override
+    public void OnNotificationBackClickListener() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.main, new HomeFragment())
                 .commit();

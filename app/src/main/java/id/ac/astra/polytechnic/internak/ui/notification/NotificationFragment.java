@@ -96,15 +96,6 @@ public class NotificationFragment extends Fragment {
         buttonFilterNotification.setOnClickListener(v -> showPopupWithAnimation());
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        if (getActivity() instanceof MainActivity) {
-            MainActivity mainActivity = (MainActivity) getActivity();
-            setOnNotificationBackClickListener(mainActivity);
-        }
-    }
-
     private void showPopupWithAnimation() {
         if (popupFilterNotification.getVisibility() == View.GONE) {
             popupFilterNotification.setVisibility(View.VISIBLE);
