@@ -23,6 +23,7 @@ import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
 import id.ac.astra.polytechnic.internak.ui.cage.CreteIot;
 import id.ac.astra.polytechnic.internak.ui.cage.DetailCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
+import id.ac.astra.polytechnic.internak.ui.login.SplashScreenFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 import id.ac.astra.polytechnic.internak.ui.schedule.CreateScheduleFragment;
@@ -43,9 +44,10 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         setContentView(binding.getRoot());
 
         if (savedInstanceState == null) {
-            // Load the default fragment
+            hideBottomNavigationView();
+            // Load the SplashScreenFragment as the default fragment
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main, new HomeFragment())
+                    .replace(R.id.main, new SplashScreenFragment())
                     .commit();
         }
 
@@ -74,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
             }
         });
 
-        fetchCages();
+//        fetchCages();
     }
 
     private void moveToNotificationFragment() {

@@ -23,7 +23,6 @@ import java.util.List;
 import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
 import id.ac.astra.polytechnic.internak.model.Notification;
-import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
 
 public class NotificationFragment extends Fragment {
     private OnNotificationBackClickListener listener;

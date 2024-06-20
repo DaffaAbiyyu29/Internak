@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "572151036837",
+    "firebase_url": "https://testdata-f02da-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "testdata-f02da",
+    "storage_bucket": "testdata-f02da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572151036837:android:cfb12e4dbffc94f3cb864c",
+        "android_client_info": {
+          "package_name": "id.ac.astra.polytechnic.internak"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwTt8EeygHAkXCd3_nncRm4ejVleBBLrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,6 @@
+<!-- res/drawable/button_background_grey.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#F3F3F3"/> <!-- light grey -->
+    <corners android:radius="10dp"/>
+    <padding android:left="10dp" android:top="10dp" android:right="10dp" android:bottom="10dp"/>
+</shape>

@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".ui.login.Login3Fragment">
 
     <!-- Background Image -->
     <ImageView
@@ -80,7 +79,8 @@
                 android:textSize="12sp"
                 android:textColor="@android:color/black"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                android:hint="Edwin Julianto"/>
 
             <TextView
                 android:id="@+id/labelProvince"
@@ -102,7 +102,8 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_outline_green"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                android:contentDescription="Province" />
 
             <TextView
                 android:id="@+id/labelCity"
@@ -124,7 +125,8 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_outline_green"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                android:contentDescription="City" />
 
             <TextView
                 android:id="@+id/labelPhoneNumber"
@@ -149,7 +151,8 @@
                 android:textSize="13sp"
                 android:textColor="@android:color/black"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                android:hint="0812345678"/>
 
             <TextView
                 android:id="@+id/labelUsername"
@@ -174,7 +177,8 @@
                 android:textSize="13sp"
                 android:textColor="@android:color/black"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"
+                android:hint="edwin.win"/>
 
             <TextView
                 android:id="@+id/labelPassword"
@@ -196,10 +200,12 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_outline_green"
                 android:inputType="textPassword"
+                android:hint="Kata Sandi"
+                android:ems="15"
                 android:textSize="13sp"
                 android:textColor="@android:color/black"
                 android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:paddingEnd="10dp"/>
 
             <TextView
                 android:id="@+id/labelConfirmPassword"
@@ -221,6 +227,8 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/button_outline_green"
                 android:inputType="textPassword"
+                android:hint="Konfirmasi Kata Sandi"
+                android:ems="15"
                 android:textSize="13sp"
                 android:textColor="@android:color/black"
                 android:paddingStart="10dp"
@@ -233,9 +241,11 @@
                 android:layout_below="@id/confirmPassword"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:contentDescription="Terms and Conditions Agreement"
                 android:text="Dengan mendaftar, saya telah membaca dan menyetujui Ketentuan Penggunaan dan Kebijakan Privasi dari InTernak"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="8dp"
-                android:textColor="@android:color/darker_gray"/>
+                tools:ignore="TextSizeCheck,TextSizeCheck" />
 
             <!-- Button: Daftar -->
             <Button
@@ -248,7 +258,8 @@
                 android:layout_marginTop="20dp"
                 android:text="Daftar"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:contentDescription="Register Button" />
 
             <!-- Footer Text -->
             <TextView
@@ -260,7 +271,8 @@
                 android:layout_centerHorizontal="true"
                 android:text="Sudah memiliki Akun? Masuk"
                 android:textSize="13sp"
-                android:textColor="@android:color/darker_gray" />
+                android:textColor="@android:color/darker_gray"
+                android:contentDescription="Already have an account? Login" />
 
         </RelativeLayout>
     </ScrollView>

@@ -1,0 +1,22 @@
+<!-- res/navigation/nav_graph.xml -->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/onboarding1">
+
+    <fragment
+        android:id="@+id/onboarding1"
+        android:name="id.ac.astra.polytechnic.internak.ui.login.OnBoardingFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_onboarding_1">
+        <action
+            android:id="@+id/action_profileFragment_to_ubahProfilFragment"
+            app:destination="@id/ubahProfilFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ubahProfilFragment"
+        android:name="id.ac.astra.polytechnic.internak.ui.profile.UbahProfilFragment"
+        android:label="Ubah Profil"
+        tools:layout="@layout/fragment_onboarding_2" />
+</navigation>
