@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,6 +25,7 @@ import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
 import id.ac.astra.polytechnic.internak.ui.cage.CreteIot;
 import id.ac.astra.polytechnic.internak.ui.cage.DetailCage;
 import id.ac.astra.polytechnic.internak.ui.home.HomeFragment;
+import id.ac.astra.polytechnic.internak.ui.login.SplashScreenFragment;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 import id.ac.astra.polytechnic.internak.ui.profile.ProfileFragment;
 import id.ac.astra.polytechnic.internak.ui.schedule.CreateScheduleFragment;
@@ -34,7 +37,7 @@ import id.ac.astra.polytechnic.internak.ui.schedule.ScheduleFragment;
 public class MainActivity extends AppCompatActivity implements HomeFragment.OnNotificationClickListener, NotificationFragment.OnNotificationBackClickListener, CageFragment.OnCreateCageClickListener,
         CreateCage.OnCreateCageBackClickListener, CageFragment.OnDetailCageClickListener, DetailCage.OndetailBackClickListener, ScheduleFragment.OnCreateScheduleClickListener, CreateScheduleFragment.OnScheduleBackClickListener,
         DetailCage.OnCreateIoTClickListener, CreteIot.OnCreateIoTBackClickListener{
-    ActivityMainBinding binding;
+    static ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +48,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         if (savedInstanceState == null) {
             // Load the default fragment
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main, new HomeFragment())
+                    .replace(R.id.main, new SplashScreenFragment())
                     .commit();
+            hideBottomNavigationView();
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
@@ -65,9 +69,15 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 }
 
                 if (selectedFragment != null) {
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.main, selectedFragment)
-                            .commit();
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.main, selectedFragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+//                    getSupportFragmentManager().beginTransaction()
+//                            .replace(R.id.main, selectedFragment)
+//                            .commit();
                 }
 
                 return true;
@@ -166,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         binding.bottomNavigationView.setVisibility(View.GONE);
     }
 
-    private void showBottomNavigationView() {
+    public static void showBottomNavigationView() {
         binding.bottomNavigationView.setVisibility(View.VISIBLE);
     }
 

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="@android:color/white"
-    tools:context=".OnboardingFragment">
+    tools:context=".ui.login.OnBoarding3Fragment">
 
     <ImageView
         android:id="@+id/onboardingImage1"
@@ -41,33 +41,23 @@
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp" />
 
-    <LinearLayout
+    <Button
+        android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/onboardingSubtitle1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
         android:background="@drawable/button_backround"
-        android:orientation="horizontal"
+        android:drawableEnd="@drawable/icon_arrow_white"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:minHeight="48dp"
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp"
-        android:gravity="center"
-        android:clickable="true"
-        android:focusable="true">
+        android:text="@string/started"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/started"
-            android:textColor="@android:color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/icon_arrow_white"
-            android:contentDescription="@string/next" />
-    </LinearLayout>
 </RelativeLayout>

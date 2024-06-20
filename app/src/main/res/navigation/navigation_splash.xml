@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_splash">
+
+    <fragment
+        android:id="@+id/splash_screen"
+        android:name="id.ac.astra.polytechnic.internak.ui.login.SplashScreenFragment"
+        android:label="Splash Screen"
+        tools:layout="@layout/fragment_splash_screen">
+        <action
+            android:id="@+id/action_splashFragment_to_OnBoardingFragment"
+            app:destination="@id/onboarding1" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/onboarding1"
+        android:name="id.ac.astra.polytechnic.internak.ui.login.OnBoardingFragment"
+        android:label="On Boarding"
+        tools:layout="@layout/fragment_onboarding_1" />
+
+</navigation>
