@@ -167,13 +167,14 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_view_cages1"
-                        android:layout_width="438dp"
-                        android:layout_height="404dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal"
+                        android:layout_marginTop="110dp"
+                        android:layout_marginBottom="80dp"
                         android:padding="8dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintTop_toBottomOf="@+id/total_kandang"
-                        tools:layout_editor_absoluteX="2dp"
                         tools:listitem="@layout/cardview_create" />
 
                         <com.google.android.material.card.MaterialCardView

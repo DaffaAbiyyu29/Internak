@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -68,6 +70,8 @@ public class NotificationFragment extends Fragment {
             noNotificationCard.setVisibility(View.VISIBLE);
         }
 
+        MainActivity.hideBottomNavigationView();
+
         return view;
     }
 
@@ -80,9 +84,11 @@ public class NotificationFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.OnNotificationBackClickListener();
-                }
+//                if (listener != null) {
+//                    listener.OnNotificationBackClickListener();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
         });
 

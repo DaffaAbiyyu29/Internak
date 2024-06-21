@@ -33,11 +33,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
                         android:layout_centerVertical="true"
                         android:text="InTernak"
                         android:textAlignment="viewStart"
                         android:textColor="@color/white"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -46,6 +47,7 @@
                         android:layout_height="24dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="20dp"
                         android:clickable="true"
                         android:src="@drawable/ic_bell"
@@ -178,6 +180,7 @@
 
 
                     <LinearLayout
+                        android:id="@+id/ubahPassword"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="2dp"
@@ -222,6 +225,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/kebijakanPrivasi"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="20dp"
@@ -266,6 +270,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/layananAplikasi"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="2dp"
@@ -442,9 +447,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.card.MaterialCardView
-                        xmlns:android="http://schemas.android.com/apk/res/android"
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/cardview_cage"
+                        android:id="@+id/cardview_keluar"
                         android:layout_width="375dp"
                         android:layout_height="45dp"
                         android:background="@drawable/button_outline"
@@ -458,6 +461,15 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:strokeColor="@color/red">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="Keluar"
+                            android:textSize="16sp"
+                            android:textColor="@color/red"
+                            android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
 

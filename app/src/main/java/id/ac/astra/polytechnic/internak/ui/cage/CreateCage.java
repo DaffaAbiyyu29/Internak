@@ -21,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -205,6 +206,8 @@ public class CreateCage extends Fragment {
                     Toast.makeText(getContext(), "Kandang berhasil dibuat", Toast.LENGTH_SHORT).show();
                     // Navigasi kembali ke CageFragment
                     createlistener.OnCreateCageBackClickListener();
+//                    FragmentManager fragmentManager = getParentFragmentManager();
+//                    fragmentManager.popBackStack();
                 } else {
                     Toast.makeText(getContext(), "Gagal membuat kandang", Toast.LENGTH_SHORT).show();
                 }
@@ -233,6 +236,8 @@ public class CreateCage extends Fragment {
             }
         });
 
+        MainActivity.hideBottomNavigationView();
+
         return root;
     }
 
@@ -244,9 +249,11 @@ public class CreateCage extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (createlistener != null) {
-                    createlistener.OnCreateCageBackClickListener();
-                }
+//                if (createlistener != null) {
+//                    createlistener.OnCreateCageBackClickListener();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
         });
     }
