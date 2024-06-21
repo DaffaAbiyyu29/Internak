@@ -25,6 +25,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
@@ -33,7 +34,7 @@ import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentCageBinding;
 import id.ac.astra.polytechnic.internak.model.Cage;
 
-public class CageFragment extends Fragment {
+public class CageFragment extends Fragment implements CageAdapterC.OnDetailButtonClickListener {
 
     private CageViewModel cageViewModel;
     private FragmentCageBinding binding;
@@ -46,6 +47,15 @@ public class CageFragment extends Fragment {
 
     private static final String TAG = "CageFragment";
 
+    @Override
+    public void onDetailButtonClick(Cage cage) {
+        // Handle the detail button click here
+        Log.d(TAG, "Detail button clicked for cage: " + cage.getCagName());
+        // Call a method in the activity or navigate to a new fragment/ activity
+        if (mlistener != null) {
+            mlistener.onDetailCageClicked();
+        }
+    }
     public interface OnCreateCageClickListener {
         void onCreateCageClicked();
         void onNotificationClicked();
@@ -83,7 +93,7 @@ public class CageFragment extends Fragment {
                 cageViewModel.onLeftButtonClick();
                 leftButton.setBackgroundColor(activeBackgroundColor);
                 rightButton.setBackgroundColor(inactiveBackgroundColor);
-                updateTotalKandangText(cageList.size());
+                filterAndDisplayCagesByStatus(1);
                 recyclerView.setVisibility(View.VISIBLE);
                 cardRehat.setVisibility(View.GONE);
             }
@@ -95,9 +105,9 @@ public class CageFragment extends Fragment {
                 cageViewModel.onRightButtonClick();
                 leftButton.setBackgroundColor(inactiveBackgroundColor);
                 rightButton.setBackgroundColor(activeBackgroundColor);
-                totalKandangTextView.setText("Terdapat 1 kandang");
-                recyclerView.setVisibility(View.GONE);
-                cardRehat.setVisibility(View.VISIBLE);
+                filterAndDisplayCagesByStatus(0);
+                recyclerView.setVisibility(View.VISIBLE);
+                cardRehat.setVisibility(View.GONE);
             }
         });
 
@@ -115,27 +125,34 @@ public class CageFragment extends Fragment {
         recyclerView = binding.recyclerViewCages1;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        cageAdapter = new CageAdapterC(new ArrayList<>(), apiService);
+        cageAdapter = new CageAdapterC(new ArrayList<>(), apiService,this);
         recyclerView.setAdapter(cageAdapter);
         Log.d(TAG, "RecyclerView initialized with adapter.");
         setupObservers();
+        filterAndDisplayCagesByStatus(1);
 
         return root;
     }
 
     private void setupObservers() {
+        // Observe cageList LiveData
         cageViewModel.getCages().observe(getViewLifecycleOwner(), new Observer<List<Cage>>() {
             @Override
             public void onChanged(List<Cage> cages) {
-                if (cages != null) {
-                    Log.d(TAG, "Cages updated: " + cages.size());
-                    cageList.clear();
-                    cageList.addAll(cages);
-                    cageAdapter.updateData(cages);
-                    updateTotalKandangText(cages.size());
-                }
+                Log.d(TAG, "Received updated cage list.");
+                cageList = cages;
+                // Initially display cages with status 1
+                filterAndDisplayCagesByStatus(1);
             }
         });
+    }
+
+    private void filterAndDisplayCagesByStatus(int status) {
+        List<Cage> filteredCages = cageList.stream()
+                .filter(cage -> cage.getCagStatus() == status)
+                .collect(Collectors.toList());
+        cageAdapter.updateData(filteredCages);
+        updateTotalKandangText(filteredCages.size());
     }
 
     private void updateTotalKandangText(int totalCages) {

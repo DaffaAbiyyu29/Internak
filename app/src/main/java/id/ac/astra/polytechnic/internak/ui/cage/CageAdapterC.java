@@ -23,12 +23,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class CageAdapterC extends RecyclerView.Adapter<CageAdapterC.CageCViewHolder> {
-    private List<Cage> cageItemList;
-    private ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
-    public CageAdapterC(List<Cage> cageItemList, ApiService apiService) {
+    private List<Cage> cageItemList;
+    private ApiService apiService;
+    private OnDetailButtonClickListener onDetailButtonClickListener;
+
+    public CageAdapterC(List<Cage> cageItemList, ApiService apiService, OnDetailButtonClickListener onDetailButtonClickListener) {
         this.cageItemList = cageItemList;
         this.apiService = apiService;
+        this.onDetailButtonClickListener = onDetailButtonClickListener;
     }
 
     @NonNull
@@ -42,7 +45,7 @@ public class CageAdapterC extends RecyclerView.Adapter<CageAdapterC.CageCViewHol
     public void onBindViewHolder(@NonNull CageAdapterC.CageCViewHolder holder, int position) {
         Cage cageItem = cageItemList.get(position);
 
-        // Atur data ke dalam tampilan holder
+        // Set data to the holder's views
         holder.cageName.setText(cageItem.getCagName());
 
         Call<SingleObjectApiResponse<City>> call = apiService.getCityById(cageItem.getCtyId());
@@ -54,7 +57,7 @@ public class CageAdapterC extends RecyclerView.Adapter<CageAdapterC.CageCViewHol
                     Log.d("CageAdapter", "sukses: " + city.getCty_name());
                     holder.cageLocation.setText(city.getCty_name());
                 } else {
-                    // Tangani respons tidak berhasil
+                    // Handle unsuccessful response
                     Log.e("CageAdapter", "Response not successful or body is null");
                 }
             }
@@ -65,10 +68,10 @@ public class CageAdapterC extends RecyclerView.Adapter<CageAdapterC.CageCViewHol
             }
         });
         holder.cagekapasitas.setText(String.valueOf(cageItem.getCagCapacity()) + " Ekor");
-//        holder.cagesuhu.setText(String.valueOf(cageItem.getTemperature()) + " °C");
-//        holder.cageanomia.setText(String.valueOf(cageItem.getAmonia()) + " ppm");
-    }
 
+        // Set the onClickListener for the detail button
+        holder.detailButton.setOnClickListener(v -> onDetailButtonClickListener.onDetailButtonClick(cageItem));
+    }
 
     @Override
     public int getItemCount() {
@@ -86,6 +89,7 @@ public class CageAdapterC extends RecyclerView.Adapter<CageAdapterC.CageCViewHol
         public TextView cagekapasitas;
         public TextView cagesuhu;
         public TextView cageanomia;
+        public Button detailButton;  // Add the button here
 
         public CageCViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -94,6 +98,11 @@ public class CageAdapterC extends RecyclerView.Adapter<CageAdapterC.CageCViewHol
             cagekapasitas = itemView.findViewById(R.id.total_kapasitas);
             cagesuhu = itemView.findViewById(R.id.total_suhu);
             cageanomia = itemView.findViewById(R.id.total_anomia);
+            detailButton = itemView.findViewById(R.id.Btn_detail);  // Initialize the button
         }
+    }
+
+    public interface OnDetailButtonClickListener {
+        void onDetailButtonClick(Cage cage);
     }
 }

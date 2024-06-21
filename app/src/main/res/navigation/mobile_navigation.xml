@@ -81,4 +81,10 @@
         android:label="Ubah Profil"
         tools:layout="@layout/fragment_ubah_profil" />
 
+    <fragment
+        android:id="@+id/detailCageFragment"
+        android:name="id.ac.astra.polytechnic.internak.ui.cage.DetailCage"
+        android:label="Detail Cage"
+        tools:layout="@layout/fragment_cage_detail" />
+
 </navigation>
