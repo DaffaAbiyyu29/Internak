@@ -1,5 +1,6 @@
 package id.ac.astra.polytechnic.internak.ui.schedule;
 
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -45,9 +46,11 @@ public class CreateScheduleFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.OnScheduleBackClickListener();
-                }
+//                if (listener != null) {
+//                    listener.OnScheduleBackClickListener();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
             }
         });
 
@@ -70,6 +73,8 @@ public class CreateScheduleFragment extends Fragment {
 
         calendarMulai = Calendar.getInstance();
         calendarAkhir = Calendar.getInstance();
+
+        MainActivity.hideBottomNavigationView();
     }
 
     private void showDatePickerDialog(final EditText editText, final Calendar calendar) {

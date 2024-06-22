@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
 import id.ac.astra.polytechnic.internak.api.ApiClient;
 import id.ac.astra.polytechnic.internak.api.ApiService;
@@ -27,6 +30,8 @@ import id.ac.astra.polytechnic.internak.model.Cage;
 import id.ac.astra.polytechnic.internak.ui.article.Article;
 import id.ac.astra.polytechnic.internak.ui.article.ArticleAdapter;
 import id.ac.astra.polytechnic.internak.ui.cage.CageAdapter;
+import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
+import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
@@ -53,6 +58,8 @@ public class HomeFragment extends Fragment {
         Log.d(TAG, "onCreateView: setupRecyclerView akan dipanggil");
         setupRecyclerView();
         setupObservers(homeViewModel);
+
+        MainActivity.showBottomNavigationView();
 
         return root;
     }
@@ -122,9 +129,14 @@ public class HomeFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.onNotificationClicked();
-                }
+//                if (listener != null) {
+//                    listener.onNotificationClicked();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main, new NotificationFragment());
+                fragmentTransaction.addToBackStack("HomeFragment"); // Gunakan tag yang unik untuk CageFragment
+                fragmentTransaction.commit();
             }
         });
     }

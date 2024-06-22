@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
             hideBottomNavigationView();
             // Load the SplashScreenFragment as the default fragment
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.main, new SplashScreenFragment())
+                    .replace(R.id.main, new HomeFragment())
                     .commit();
             hideBottomNavigationView();
         }
@@ -85,6 +85,22 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
                 return true;
             }
         });
+
+//        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//            @Override
+//            public void onBackStackChanged() {
+//                Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.main);
+//                if (currentFragment instanceof HomeFragment) {
+//                    binding.bottomNavigationView.setSelectedItemId(R.id.nav_home);
+//                } else if (currentFragment instanceof CageFragment) {
+//                    binding.bottomNavigationView.setSelectedItemId(R.id.nav_cage);
+//                } else if (currentFragment instanceof ProfileFragment) {
+//                    binding.bottomNavigationView.setSelectedItemId(R.id.nav_profile);
+//                } else if (currentFragment instanceof ScheduleFragment) {
+//                    binding.bottomNavigationView.setSelectedItemId(R.id.nav_schedule);
+//                }
+//            }
+//        });
     }
 
     private void moveToNotificationFragment() {
@@ -172,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.OnNo
         showBottomNavigationView();
     }
 
-    private void hideBottomNavigationView() {
+    public static void hideBottomNavigationView() {
         binding.bottomNavigationView.setVisibility(View.GONE);
     }
 

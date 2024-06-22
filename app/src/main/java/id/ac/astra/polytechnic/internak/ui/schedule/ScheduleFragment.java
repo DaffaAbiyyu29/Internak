@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,11 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
+
+import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
 import id.ac.astra.polytechnic.internak.api.ApiClient;
 import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentScheduleBinding;
 import id.ac.astra.polytechnic.internak.model.Schedule;
+import id.ac.astra.polytechnic.internak.ui.cage.CreateCage;
+import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 
 public class ScheduleFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -50,6 +56,8 @@ public class ScheduleFragment extends Fragment {
 
         setupObservers(scheduleViewModel);
 
+        MainActivity.showBottomNavigationView();
+
         return root;
     }
 
@@ -61,9 +69,14 @@ public class ScheduleFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (listener != null) {
-                    listener.onCreateScheduleClicked();
-                }
+//                if (listener != null) {
+//                    listener.onCreateScheduleClicked();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main, new CreateScheduleFragment());
+                fragmentTransaction.addToBackStack("ScheduleFragment"); // Gunakan tag yang unik untuk CageFragment
+                fragmentTransaction.commit();
             }
         });
     }

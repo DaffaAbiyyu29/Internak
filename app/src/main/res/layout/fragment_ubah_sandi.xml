@@ -148,7 +148,7 @@
             app:strokeColor="@color/primary">
 
             <ImageView
-                android:id="@+id/button_back_notification"
+                android:id="@+id/button_back_profile"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="start|top"

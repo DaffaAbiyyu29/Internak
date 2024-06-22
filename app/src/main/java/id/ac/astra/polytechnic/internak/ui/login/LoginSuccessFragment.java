@@ -25,6 +25,8 @@ public class LoginSuccessFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login_success, container, false);
 
+        MainActivity.hideBottomNavigationView();
+
         ImageButton nextButton = view.findViewById(R.id.arrowButton);
         nextButton.setOnClickListener(v -> {
 //            Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -35,7 +37,6 @@ public class LoginSuccessFragment extends Fragment {
             fragmentTransaction.replace(R.id.main, new HomeFragment());
             fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
-            MainActivity.showBottomNavigationView();
         });
 
         return view;

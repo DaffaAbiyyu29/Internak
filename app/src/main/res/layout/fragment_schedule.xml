@@ -27,17 +27,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/primary">
 
-            <ImageView
-                android:id="@+id/button_back_cage"
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:clickable="true"
-                android:src="@drawable/ic_left_arrow"
-                android:tooltipText="Back To Dashboard"
-                app:tint="@color/white" />
+<!--            <ImageView-->
+<!--                android:id="@+id/button_back_cage"-->
+<!--                android:layout_width="45dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:layout_marginStart="20dp"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:clickable="true"-->
+<!--                android:src="@drawable/ic_left_arrow"-->
+<!--                android:tooltipText="Back To Dashboard"-->
+<!--                app:tint="@color/white" />-->
 
             <TextView
                 android:id="@+id/textView"

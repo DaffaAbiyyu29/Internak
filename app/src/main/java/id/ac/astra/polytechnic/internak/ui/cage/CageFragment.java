@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +35,7 @@ import id.ac.astra.polytechnic.internak.api.ApiClient;
 import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentCageBinding;
 import id.ac.astra.polytechnic.internak.model.Cage;
+import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 
 public class CageFragment extends Fragment implements CageAdapterC.OnDetailButtonClickListener {
 
@@ -131,6 +134,8 @@ public class CageFragment extends Fragment implements CageAdapterC.OnDetailButto
         setupObservers();
         filterAndDisplayCagesByStatus(1);
 
+        MainActivity.showBottomNavigationView();
+
         return root;
     }
 
@@ -180,18 +185,28 @@ public class CageFragment extends Fragment implements CageAdapterC.OnDetailButto
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.onCreateCageClicked();
-                }
+//                if (listener != null) {
+//                    listener.onCreateCageClicked();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main, new CreateCage());
+                fragmentTransaction.addToBackStack("CageFragment"); // Gunakan tag yang unik untuk CageFragment
+                fragmentTransaction.commit();
             }
         });
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listener != null) {
-                    listener.onNotificationClicked();
-                }
+//                if (listener != null) {
+//                    listener.onNotificationClicked();
+//                }
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.main, new NotificationFragment());
+                fragmentTransaction.addToBackStack("CageFragment"); // Gunakan tag yang unik untuk CageFragment
+                fragmentTransaction.commit();
             }
         });
 
