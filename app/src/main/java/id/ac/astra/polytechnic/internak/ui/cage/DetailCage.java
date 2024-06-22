@@ -1,7 +1,10 @@
 package id.ac.astra.polytechnic.internak.ui.cage;
 
+import static android.content.ContentValues.TAG;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -14,22 +17,39 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import id.ac.astra.polytechnic.internak.MainActivity;
 import id.ac.astra.polytechnic.internak.R;
+import id.ac.astra.polytechnic.internak.api.ApiClient;
+import id.ac.astra.polytechnic.internak.api.ApiService;
 import id.ac.astra.polytechnic.internak.databinding.FragmentCageDetailBinding;
+import id.ac.astra.polytechnic.internak.model.Cage;
+import id.ac.astra.polytechnic.internak.model.Censor;
 import id.ac.astra.polytechnic.internak.ui.notification.NotificationFragment;
 
 public class DetailCage extends Fragment {
     private OndetailBackClickListener listener;
     private OnCreateIoTClickListener CreateIoT;
+    private CreateIotViewModel createIotViewModel;
     private FragmentCageDetailBinding binding;
     private MaterialCardView popupadd;
     private ImageView mImageView;
     private GestureDetector gestureDetector;
+    private RecyclerView recyclerView;
+    private IotAdapter iotAdapter;
+    private List<Censor> censorList = new ArrayList<>();
     private float initialY;
 
     public interface OndetailBackClickListener {
@@ -44,10 +64,31 @@ public class DetailCage extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentCageDetailBinding.inflate(inflater, container, false);
+        createIotViewModel = new ViewModelProvider(this).get(CreateIotViewModel.class);
+
         View root = binding.getRoot();
 
+        recyclerView = binding.recyclerView;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        iotAdapter = new IotAdapter(new ArrayList<>(), apiService);
+        recyclerView.setAdapter(iotAdapter);
+        setupObservers();
         return root;
     }
+
+    private void setupObservers() {
+        // Observe cageList LiveData
+        createIotViewModel.getCensor().observe(getViewLifecycleOwner(), new Observer<List<Censor>>() {
+            @Override
+            public void onChanged(List<Censor> censors) {
+                Log.d(TAG, "Received updated censor list.");
+                censorList = censors;
+                iotAdapter.updateData(censorList);
+            }
+        });
+    }
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -55,23 +96,21 @@ public class DetailCage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ImageView imageView = view.findViewById(R.id.button_back_cage);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.OndetailBackClickListener();
-                }
-            }
+        imageView.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main, new CageFragment());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
         MaterialButton button = view.findViewById(R.id.tambah_device);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (CreateIoT != null){
-                    CreateIoT.OnCreateIoTClickListener();
-                }
-            }
+        button.setOnClickListener(v -> {
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.main, new CreteIot());
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
         });
 
         popupadd = view.findViewById(R.id.popup_filter);

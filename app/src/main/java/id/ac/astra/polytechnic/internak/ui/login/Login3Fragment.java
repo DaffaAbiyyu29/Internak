@@ -43,14 +43,14 @@ public class Login3Fragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        ImageButton backButton = view.findViewById(R.id.arrow);
-        backButton.setOnClickListener(v -> {
-            FragmentManager fragmentManager = getParentFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.main, new Login1Fragment());
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        });
+//        ImageButton backButton = view.findViewById(R.id.arrow);
+//        backButton.setOnClickListener(v -> {
+//            FragmentManager fragmentManager = getParentFragmentManager();
+//            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//            fragmentTransaction.replace(R.id.main, new Login1Fragment());
+//            fragmentTransaction.addToBackStack(null);
+//            fragmentTransaction.commit();
+//        });
 
         return view;
     }

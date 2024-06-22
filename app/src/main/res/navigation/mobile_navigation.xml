@@ -45,7 +45,11 @@
         android:id="@+id/navigation_cage"
         android:name="id.ac.astra.polytechnic.internak.ui.cage.CageFragment"
         android:label="@string/cage_title"
-        tools:layout="@layout/fragment_cage" />
+        tools:layout="@layout/fragment_cage" >
+        <action
+            android:id="@+id/action_detailCage"
+            app:destination="@id/detailCageFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_schedule"
@@ -85,6 +89,16 @@
         android:id="@+id/detailCageFragment"
         android:name="id.ac.astra.polytechnic.internak.ui.cage.DetailCage"
         android:label="Detail Cage"
-        tools:layout="@layout/fragment_cage_detail" />
+        tools:layout="@layout/fragment_cage_detail">
+        <action
+            android:id="@+id/action_profileFragment_to_ubahProfilFragment"
+            app:destination="@id/create_IoT" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/create_IoT"
+        android:name="id.ac.astra.polytechnic.internak.ui.cage.CreteIot"
+        android:label="Detail Cage"
+        tools:layout="@layout/fragment_iot"/>
 
 </navigation>

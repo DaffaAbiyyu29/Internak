@@ -1,6 +1,7 @@
 package id.ac.astra.polytechnic.internak.api;
 
 import id.ac.astra.polytechnic.internak.model.Cage;
+import id.ac.astra.polytechnic.internak.model.Censor;
 import id.ac.astra.polytechnic.internak.model.City;
 import id.ac.astra.polytechnic.internak.model.Notification;
 import id.ac.astra.polytechnic.internak.model.Province;
@@ -17,6 +18,9 @@ public interface ApiService {
 
     @GET("api/schedule/getAll")
     Call<ApiResponse<Schedule>> getAllSchedules();
+
+    @GET("api/censor/getAll")
+    Call<ApiResponse<Censor>> getAllCensor();
 
     @GET("provinces/getProvince")
     Call<ApiResponse<Province>> getAllProvinces();
@@ -35,4 +39,6 @@ public interface ApiService {
 
     @POST("api/cage/create")
     Call<SingleObjectApiResponse<Cage>> createCage(@Body Cage msCage);
+    @POST("api/censor/create")
+    Call<SingleObjectApiResponse<Censor>> createCensor(@Body Censor msCensor); // Add this method
 }
